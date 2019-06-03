@@ -1,0 +1,118 @@
+body {
+    background-color: rgb(255, 253, 252);
+    display: flex;
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+    justify-content: center;
+    margin: 0 2em 0 2em;
+    line-height: 1.4em;
+}
+
+.content {
+    flex: 0 1 auto;
+    width: 42em;
+}
+
+.about {
+    margin: 0px;
+}
+
+.page-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.name {
+    margin-left: 1em;
+    margin-right: auto;
+}
+
+.post-header {
+    align-items: baseline;
+    color: rgb(90,88,87);
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    line-height: 0.5em;
+}
+
+a {
+    color: black;
+    text-decoration-color: rgb(90,88,87);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #FFA000;
+    text-decoration-color: #d18400
+}
+
+.icon:hover {
+    fill: #FFA000;
+}
+
+h1 > a, h2 > a, h3 > a, h4 > a, a.icon {
+    text-decoration: none;
+}
+
+.svgi > svg {
+    vertical-align: middle;
+}
+
+code {
+    white-space: pre;
+    font-family: "Consolas";
+    font-size: 16px;
+}
+
+blockquote.aside {
+    padding: 0.5em;
+    background-color: hsla(20, 58%, 96%, 1)
+}
+
+.tags {
+    align-items: baseline;
+    color: rgb(90,88,87);
+    display: flex;
+    flex-flow: wrap;
+    line-height: 1em;
+    list-style-type: none;
+    padding: 0;
+}
+
+.tags.post-tags {
+    font-size: 16px;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.tags.all-tags {
+    justify-content: flex-start;
+    margin: -1em 0;
+}
+
+.list-tags {
+    margin: -1em 0;
+}
+
+.tags a {
+    color: rgb(45,44,43);
+}
+
+.post-tags a {
+    text-decoration: none;
+}
+
+.tags > li {
+    margin: 0 0.1em;
+}
+
+.post {
+    margin: 2em auto;
+}
+
+.rss-link {
+    font-size: 12px;
+    text-align: right;
+}

@@ -1,0 +1,25 @@
+<svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 36
+L 72 36
+L 72 0
+L 0 0
+z
+" style="fill:none;"/>
+  </g>
+  <g id="axes_1">
+   <g id="line2d_1">
+    <path clip-path="url(#p6acbd377c5)" d="M 3.272727 18
+L 68.727273 18
+L 68.727273 18
+" style="fill:none;stroke:#777777;stroke-linecap:square;stroke-width:1.5;"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6acbd377c5">
+   <rect height="36" width="72" x="0" y="0"/>
+  </clipPath>
+ </defs>
+</svg>
