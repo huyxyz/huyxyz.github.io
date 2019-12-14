@@ -112,7 +112,52 @@ blockquote.aside {
     margin: 2em auto;
 }
 
+.post img {
+    display: block;
+    margin: 0 auto;
+}
+
 .rss-link {
     font-size: 12px;
     text-align: right;
+}
+
+.post-title {
+    line-height: 1em;
+}
+
+.katex {
+    font-size: large;
+}
+
+.katex-display > .katex {
+    font-size: larger;
+}
+
+.highlight > pre {
+    position: relative;
+    padding: .25em 0;
+    margin: -.25em 0;
+}
+
+.highlight code {
+    font-size: 14px;
+}
+
+.highlight > pre::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+    background: inherit;
+    left: calc(50% - 50vw);
+    z-index: -1;
+    margin: -.25em 0;
+    padding: .125em 0;
+}
+
+@media (min-width: 42em) {
+    body {
+        overflow-x: hidden;
+    }
 }
