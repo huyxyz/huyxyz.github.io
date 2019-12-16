@@ -5,10 +5,54 @@
     <description>Recent content in Posts on graeme phillips posting</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Dec 2019 18:34:03 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 15 Dec 2019 18:01:49 +0000</lastBuildDate>
     
         <atom:link href="https://graemephi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Static Katex With Hugo</title>
+      <link>https://graemephi.github.io/posts/static-katex-with-hugo/</link>
+      <pubDate>Sun, 15 Dec 2019 18:01:49 +0000</pubDate>
+      
+      <guid>https://graemephi.github.io/posts/static-katex-with-hugo/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; is a static website generator written in Go. &lt;a href=&#34;https://katex.org/&#34;&gt;Katex&lt;/a&gt; is a math typesetting library written in Javascript. This site uses them both.&lt;/p&gt;
+&lt;p&gt;I keep javascript turned off on websites unless white-listed. I notice when websites fail to load without javascript and I notice when websites don’t require it at all. I’d like mine to be one of the latter, but also, I want to have proper maths typesetting. Now, usually the way you get maths onto the internet is you dump some LaTeX surrounded by $$ into a document, embed some random javascript file, and everything happens automatically. I don’t like that.&lt;/p&gt;
+&lt;p&gt;What I want instead is for Hugo to typeset my maths. But I still want &lt;code&gt;hugo server&lt;/code&gt; to render everything properly, and I don’t want a complicated multi-stage build process, and I &lt;em&gt;really&lt;/em&gt; don’t want to maintain my own build of Hugo. Basically, I want to be able to dump the Hugo executable somewhere and have everything work when I type&lt;/p&gt;
+&lt;pre class=&#34;terminal&#34;&gt;&lt;code&gt;cd blog
+hugo&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Unfortunately, Hugo doesn’t really support Katex per se. It uses Markdown parsers that know to leave text surrounded by $$ alone, and Katex searches for them at page-load. These parsers are compiled into Hugo, and at no point can you intercept them to do further processing of your own.&lt;/p&gt;
+&lt;p&gt;But Hugo supports &lt;a href=&#34;https://pandoc.org/&#34;&gt;Pandoc&lt;/a&gt;, and Pandoc is happy to pass you a copy of the AST to fiddle with before it actually renders anything. What’s more, Pandoc knows that $ means inline maths and $$ means display maths, so we can just read that information off of the AST and have Katex format it as inline or display appropriately.&lt;/p&gt;
+&lt;p&gt;So, the outlines of a solution are starting to appear. We need to write a &lt;a href=&#34;https://pandoc.org/filters.html&#34;&gt;Pandoc filter&lt;/a&gt; that replaces LaTeX maths with Katex’s HTML typesetting.&lt;/p&gt;
+&lt;p&gt;But there is a problem. There are two problems.&lt;/p&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;&lt;p&gt;Hugo’s support of Pandoc is fairly limited. The command-line parameters it uses are hard-coded into Hugo, and they seem to just be whatever the guy who committed the PR adding Pandoc support needed (thanks to that guy, by the way. We couldn’t get even this far without him). We need to pass our own arguments to get Pandoc to filter anything.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Pandoc doesn’t support passing arguments to filters. We can tell Pandoc to execute &lt;code&gt;node&lt;/code&gt;, but we can’t tell Pandoc to execute &lt;code&gt;node katex.js&lt;/code&gt;. This seems to be a weird artifact of how Pandoc shells out to filters, at least on Windows.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There is a simple, elegant, and generally terrible solution to both of these problems.&lt;/p&gt;
+&lt;p&gt;The reason Hugo can call out to Pandoc, and the reason Pandoc can call out to Node, at all, is because they’re both in &lt;code&gt;PATH&lt;/code&gt;. So, we just have to arrange &lt;code&gt;PATH&lt;/code&gt; to our liking before running Hugo. I always run Hugo from VSCode, so I can do this on a per-project basis, and not contaminate the rest of my system with this, ah, workaround.&lt;/p&gt;
+&lt;p&gt;I didn’t investigate the best way to do this; I suspect on Linux it would be a bit easier. But, on Windows, I didn’t want to think too hard about it, so I just compiled a couple C programs. Now I have the following folder structure:&lt;/p&gt;
+&lt;pre class=&#34;terminal&#34;&gt;&lt;code&gt;blog/
+├── content/
+├── ...
+└── pandoc/
+     ├── node_modules/
+     ├── katex.exe
+     ├── katex.js
+     └── pandoc.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first directory in &lt;code&gt;PATH&lt;/code&gt; whenever I run Hugo is &lt;code&gt;path/to/blog/pandoc&lt;/code&gt;. &lt;code&gt;node_modules&lt;/code&gt; contains only Katex, required by &lt;code&gt;katex.js&lt;/code&gt;, the pandoc filter. &lt;code&gt;katex.exe&lt;/code&gt; opens a pipe to &lt;code&gt;node pandoc/katex.js&lt;/code&gt; and &lt;code&gt;pandoc.exe&lt;/code&gt; opens a pipe to &lt;code&gt;pandoc --katex --filter=katex&lt;/code&gt;. Full paths to these are hard-coded into the executables, because I never learn.&lt;/p&gt;
+&lt;p&gt;Then, in the front matter for a post that needs Katex, we use the Pandoc renderer:&lt;/p&gt;
+&lt;pre class=&#34;terminal&#34;&gt;&lt;code&gt;---
+title: &amp;quot;Static Katex With Hugo&amp;quot;
+date: 2019-12-16T02:01:49Z
+markup: pandoc
+---&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code for the executables and Pandoc filter are pretty rote. &lt;a href=&#34;https://gist.github.com/graemephi/7c60093f342b6dabf00d976492b6c91f&#34;&gt;Here’s a gist, if you’re interested.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There’s one big problem with this. It’s slow. For every post with maths to typeset, we have to shell out to pandoc and then it has to shell out to Node. This takes around 500ms per page for me, as opposed to 40ms for other pages. Pandoc without a filter, by the way, takes about 80ms. I can live with this for single posts as I’m writing, but I suspect before long I won’t be able to stand how long a full build takes.&lt;/p&gt;
+&lt;p&gt;That 500ms is mostly spent starting up Node and initialising Katex. So, one solution is to keep Node running and pass all the posts to a single instance. That doesn’t sound too hard to do myself, but my hope is Hugo will have made some progress on that themselves before I feel the need to–there are now so many preprocessors written in javascript they’re already thinking about it, as far as I know. But what you really want is a LaTeX to HTML renderer written in Go.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;katex-display&#34;&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.9579939999999999em;vertical-align:-0.08333em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8746639999999999em;&#34;&gt;&lt;span style=&#34;top:-3.113em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mathdefault mtight&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathdefault mtight&#34; style=&#34;margin-right:0.03588em;&#34;&gt;π&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The Discrete Fourier Transform, But With Triangles</title>
@@ -50,19 +94,19 @@
     &lt;span style=&#34;color:#66d9ef&#34;&gt;assert&lt;/span&gt;(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;isrealobj(x)) &lt;span style=&#34;color:#75715e&#34;&gt;# real signals only. i&amp;#39;m lazy&lt;/span&gt;
 
     n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(x)
-    nyquist &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+    nyquist &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
 
     y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fft&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fft(x)
 
     m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;arange(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, nyquist, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
     coefs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (m&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;m)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, nyquist&lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, nyquist&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;):
         &lt;span style=&#34;color:#75715e&#34;&gt;# indices of the non-zero components of a triangle wave&lt;/span&gt;
         &lt;span style=&#34;color:#75715e&#34;&gt;# with fundamental frequency k, not including the fundamental&lt;/span&gt;
         nz &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;arange(k&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, nyquist, k&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
         &lt;span style=&#34;color:#75715e&#34;&gt;# construct the frequency domain of the triangle wave and subtract it off&lt;/span&gt;
-        y[nz] &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abs(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; coefs[:len(nz)] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; cis(nz &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;angle(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; k))
+        y[nz] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abs(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; coefs[:len(nz)] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; cis(nz &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;angle(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; k))
 
     &lt;span style=&#34;color:#75715e&#34;&gt;# fix up conjugate symmetry&lt;/span&gt;
     y[nyquist&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;conj(y[nyquist&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
@@ -116,9 +160,7 @@
       <pubDate>Sun, 02 Jun 2019 12:34:03 +0100</pubDate>
       
       <guid>https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/</guid>
-      <description>
-
-&lt;p&gt;Phase inversion takes a signal 
+      <description>&lt;p&gt;Phase inversion takes a signal 
 &lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 54 18&#34; width=&#34;54pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
  &lt;g id=&#34;figure_1&#34;&gt;
   &lt;g id=&#34;patch_1&#34;&gt;
@@ -286,28 +328,23 @@ L 51.545455 10.836503
 &lt;/svg&gt;
 &lt;/span&gt;
 
-. Most people are introduced to it as a button you push in a DAW while troubleshooting phase problems, but with some thinking it&amp;rsquo;s capable of a lot more than that. Some digging in the audio DSP literature will uncover a stray sentence or two that acknowledges this, but I get the impression that it strikes the people who already know it as too obvious to be worth mentioning. The really nice thing about it is that it all works in a DAW&amp;ndash;you don&amp;rsquo;t need to break out Max/MSP or Reaktor to experiment with it.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m pretty sure I originally got the basic idea for all this from &lt;a href=&#34;https://vladgsound.wordpress.com/&#34;&gt;vladg/sound&lt;/a&gt;.&lt;/p&gt;
-
+. Most people are introduced to it as a button you push in a DAW while troubleshooting phase problems, but with some thinking it&#39;s capable of a lot more than that. Some digging in the audio DSP literature will uncover a stray sentence or two that acknowledges this, but I get the impression that it strikes the people who already know it as too obvious to be worth mentioning. The really nice thing about it is that it all works in a DAW&amp;ndash;you don&#39;t need to break out Max/MSP or Reaktor to experiment with it.&lt;/p&gt;
+&lt;p&gt;I&#39;m pretty sure I originally got the basic idea for all this from &lt;a href=&#34;https://vladgsound.wordpress.com/&#34;&gt;vladg/sound&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;
 &lt;blockquote class=&#34;aside&#34;&gt;
 
 
 
 
-My intuition for this is fairly algebraic so I&amp;rsquo;ll be leaning on that a little, but all you need to have is an intuition for what is happening when you route audio around in a DAW. That said, I will be using notation from digital signal processing that&amp;rsquo;s too useful to give up: &lt;code&gt;x[n]&lt;/code&gt; reads as the &lt;code&gt;n&lt;/code&gt;th sample of a signal &lt;code&gt;x&lt;/code&gt;. Then &lt;code&gt;c[n] = a[n] + b[n]&lt;/code&gt; describes &lt;code&gt;c&lt;/code&gt; by telling you how to compute the &lt;code&gt;n&lt;/code&gt;th sample of &lt;code&gt;c&lt;/code&gt; in terms of signals &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. We could drop the &lt;code&gt;[n]&lt;/code&gt;, but this makes clear that we don&amp;rsquo;t need to know anything about &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;b&lt;/code&gt; other than their &lt;code&gt;n&lt;/code&gt;th samples to compute the &lt;code&gt;n&lt;/code&gt;th sample of &lt;code&gt;c&lt;/code&gt;. For anything more complicated than this, I&amp;rsquo;ll use graphics.
+My intuition for this is fairly algebraic so I&#39;ll be leaning on that a little, but all you need to have is an intuition for what is happening when you route audio around in a DAW. That said, I will be using notation from digital signal processing that&#39;s too useful to give up: &lt;code&gt;x[n]&lt;/code&gt; reads as the &lt;code&gt;n&lt;/code&gt;th sample of a signal &lt;code&gt;x&lt;/code&gt;. Then &lt;code&gt;c[n] = a[n] + b[n]&lt;/code&gt; describes &lt;code&gt;c&lt;/code&gt; by telling you how to compute the &lt;code&gt;n&lt;/code&gt;th sample of &lt;code&gt;c&lt;/code&gt; in terms of signals &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. We could drop the &lt;code&gt;[n]&lt;/code&gt;, but this makes clear that we don&#39;t need to know anything about &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;b&lt;/code&gt; other than their &lt;code&gt;n&lt;/code&gt;th samples to compute the &lt;code&gt;n&lt;/code&gt;th sample of &lt;code&gt;c&lt;/code&gt;. For anything more complicated than this, I&#39;ll use graphics.
 
 
 
 &lt;/blockquote&gt;
 
 &lt;/p&gt;
-
 &lt;h3 id=&#34;diffing&#34;&gt;Diffing&lt;/h3&gt;
-
 &lt;p&gt;Phase inversion negates a signal, &lt;code&gt;y[n] = -x[n]&lt;/code&gt;, so it turns addition (mixing) into subtraction.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;
 &lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
@@ -838,9 +875,7 @@ L 68.727273 18
 
 &lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;The first thing to notice about this is if we add a signal to itself, phase inverted, we get silence.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;
 &lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
@@ -1084,51 +1119,30 @@ L 68.727273 18
 
 &lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;There is a vocals isolation trick that relies on this. That&amp;rsquo;s not what this post is about.&lt;/p&gt;
-
-&lt;p&gt;What we&amp;rsquo;re interested in is signals before and after applying an audio effect. Some audio plugins have this built-in; Ableton&amp;rsquo;s EQ8 allows you to listen to each equaliser band in isolation. You could always do this yourself by flipping the phase of the equalised signal and mixing it back in with the original. Doing so in a DAW can be cumbersome, so when plugins do it for you, it can be very nice if this is all you want. But there is nothing stopping you taking the difference of a whole chain of effects, and you have to do it yourself for plugins that don&amp;rsquo;t have this feature.&lt;/p&gt;
-
-&lt;p&gt;But there&amp;rsquo;s a consequence to this that is not obvious. We can add the difference signal to the dry signal to recreate the wet signal. Algebraically, &lt;code&gt;b[n] = a[n] + (b[n] - a[n])&lt;/code&gt;. &lt;em&gt;This&lt;/em&gt; is what this post is about. Whenever we have an effect in a signal chain, we can interpret the effect as &lt;em&gt;mixing in&lt;/em&gt; a difference signal to change the dry audio to the wet audio, and we are free to do any processing we want on the difference signal. Now, this is an interpretation, and it&amp;rsquo;s a wrong one. But we can have some fun with it.&lt;/p&gt;
-
-&lt;p&gt;By the way, I&amp;rsquo;m trying to keep this post DAW-agnostic but at the end I describe how I do this in Ableton Live in a self-contained way that doesn&amp;rsquo;t involve six hundred sends. So, check that out if you&amp;rsquo;re confused how to actually do this in a DAW.&lt;/p&gt;
-
-&lt;h3 id=&#34;dry-wet-mixing&#34;&gt;Dry/Wet Mixing&lt;/h3&gt;
-
-&lt;p&gt;The simplest thing we can do with the difference signal idea is to implement dry/wet mixing. This is less useful for single effects, which have this built in, than it is for effect chains, which don&amp;rsquo;t.&lt;/p&gt;
-
-&lt;p&gt;This is easy: turn the gain down on the difference signal. This will fade between from the wet to the dry signal. But if you&amp;rsquo;re willing to deal with a little algebra I think it&amp;rsquo;s worth exploring to what extent this is really dry/wet mixing, or something else. In dry/wet mixing, we mix two signals in such a way that the net gain sums to one,&lt;/p&gt;
-
+&lt;p&gt;There is a vocals isolation trick that relies on this. That&#39;s not what this post is about.&lt;/p&gt;
+&lt;p&gt;What we&#39;re interested in is signals before and after applying an audio effect. Some audio plugins have this built-in; Ableton&#39;s EQ8 allows you to listen to each equaliser band in isolation. You could always do this yourself by flipping the phase of the equalised signal and mixing it back in with the original. Doing so in a DAW can be cumbersome, so when plugins do it for you, it can be very nice if this is all you want. But there is nothing stopping you taking the difference of a whole chain of effects, and you have to do it yourself for plugins that don&#39;t have this feature.&lt;/p&gt;
+&lt;p&gt;But there&#39;s a consequence to this that is not obvious. We can add the difference signal to the dry signal to recreate the wet signal. Algebraically, &lt;code&gt;b[n] = a[n] + (b[n] - a[n])&lt;/code&gt;. &lt;em&gt;This&lt;/em&gt; is what this post is about. Whenever we have an effect in a signal chain, we can interpret the effect as &lt;em&gt;mixing in&lt;/em&gt; a difference signal to change the dry audio to the wet audio, and we are free to do any processing we want on the difference signal. Now, this is an interpretation, and it&#39;s a wrong one. But we can have some fun with it.&lt;/p&gt;
+&lt;p&gt;By the way, I&#39;m trying to keep this post DAW-agnostic but at the end I describe how I do this in Ableton Live in a self-contained way that doesn&#39;t involve six hundred sends. So, check that out if you&#39;re confused how to actually do this in a DAW.&lt;/p&gt;
+&lt;h3 id=&#34;drywet-mixing&#34;&gt;Dry/Wet Mixing&lt;/h3&gt;
+&lt;p&gt;The simplest thing we can do with the difference signal idea is to implement dry/wet mixing. This is less useful for single effects, which have this built in, than it is for effect chains, which don&#39;t.&lt;/p&gt;
+&lt;p&gt;This is easy: turn the gain down on the difference signal. This will fade between from the wet to the dry signal. But if you&#39;re willing to deal with a little algebra I think it&#39;s worth exploring to what extent this is really dry/wet mixing, or something else. In dry/wet mixing, we mix two signals in such a way that the net gain sums to one,&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;c[n] = g*a[n] + (1 - g)*b[n]&lt;/code&gt;,&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;where &lt;code&gt;g&lt;/code&gt; fades between &lt;code&gt;a&lt;/code&gt; when &lt;code&gt;g&lt;/code&gt; is 0 (-∞ dB) and &lt;code&gt;b&lt;/code&gt; when &lt;code&gt;g&lt;/code&gt; is 1 (0 dB). By multiplying out and regathering we get&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;c[n] = b[n] + g*(a[n] - b[n])&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;so a dry/wet mix knob is directly equivalent to mixing in the difference signal. Note that &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; have swapped around; the phase of the difference signal has been inverted. In practice, you get to choose which way you want, which I&amp;rsquo;ll touch on later.&lt;/p&gt;
-
+&lt;p&gt;so a dry/wet mix knob is directly equivalent to mixing in the difference signal. Note that &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; have swapped around; the phase of the difference signal has been inverted. In practice, you get to choose which way you want, which I&#39;ll touch on later.&lt;/p&gt;
 &lt;p&gt;This is no big deal. Putting an effect chain on a return track and balancing it with the source track will be easiser most of the time.&lt;/p&gt;
-
 &lt;h3 id=&#34;filters&#34;&gt;Filters&lt;/h3&gt;
-
-&lt;p&gt;This is well known among DSP people. A highpass filter can be made from a lowpass filter by subtracting the filtered signal from the original: &lt;code&gt;hp[n] = x[n] - lp[n]&lt;/code&gt;. It works the other way around, too, and with bandpass filters. If you think about this for a moment this is kind of obvious but may be surprising. If a lowpass filter removes high frequencies, then whatever is left are low frequencies, and subtracting those from the original signal will get rid of those low frequencies. But our differencing operation operates on single samples from each signal&amp;ndash;independent of any samples before or after&amp;ndash;and a single sample is just a number without any frequency information. So, given a lowpass filter, there is some highpass filter for which we can know the value of &lt;code&gt;hp[n]&lt;/code&gt; knowing only the two samples &lt;code&gt;x[n]&lt;/code&gt; and &lt;code&gt;lp[n]&lt;/code&gt;. Showing why this works mathematically isn&amp;rsquo;t hard&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; but something cool is happening here and I think it would be a mistake to dismiss it as obvious.&lt;/p&gt;
-
-&lt;p&gt;With a little tinkering we can start making bandpass and bandstop filters the same way, and go on to shelving and bell filters. But all we&amp;rsquo;ve done so far is recreate things we can already do, and I want to get to the good stuff.&lt;/p&gt;
-
+&lt;p&gt;This is well known among DSP people. A highpass filter can be made from a lowpass filter by subtracting the filtered signal from the original: &lt;code&gt;hp[n] = x[n] - lp[n]&lt;/code&gt;. It works the other way around, too, and with bandpass filters. If you think about this for a moment this is kind of obvious but may be surprising. If a lowpass filter removes high frequencies, then whatever is left are low frequencies, and subtracting those from the original signal will get rid of those low frequencies. But our differencing operation operates on single samples from each signal&amp;ndash;independent of any samples before or after&amp;ndash;and a single sample is just a number without any frequency information. So, given a lowpass filter, there is some highpass filter for which we can know the value of &lt;code&gt;hp[n]&lt;/code&gt; knowing only the two samples &lt;code&gt;x[n]&lt;/code&gt; and &lt;code&gt;lp[n]&lt;/code&gt;. Showing why this works mathematically isn&#39;t hard&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; but something cool is happening here and I think it would be a mistake to dismiss it as obvious.&lt;/p&gt;
+&lt;p&gt;With a little tinkering we can start making bandpass and bandstop filters the same way, and go on to shelving and bell filters. But all we&#39;ve done so far is recreate things we can already do, and I want to get to the good stuff.&lt;/p&gt;
 &lt;h3 id=&#34;multiband-compression&#34;&gt;Multiband Compression&lt;/h3&gt;
-
-&lt;p&gt;The reason why you&amp;rsquo;d want to use the filters described above is that we can recover the original signal exactly by mixing them together again: &lt;code&gt;x[n] = lp[n] + hp[n]&lt;/code&gt;. We don&amp;rsquo;t have to think about how we parameterise the filters or anything because we&amp;rsquo;ve used our phase inversion trick to make one filter from the other. Now all that is left is to compress just one of those filtered signals, do the sum, and we have a multiband compressor. Building this out in a DAW can be tricky but, to be clear here, it lets you combine &lt;em&gt;any&lt;/em&gt; set of filter plugins and &lt;em&gt;any&lt;/em&gt; set of compressor plugins into a multiband compressor. That includes parametric equalisers, and doesn&amp;rsquo;t have the weird overlapping spectrums that throwing bandpass filters around everywhere does.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;To do this, you need to remove the frequencies you want to compress, compress the difference signal, then add it back to the filtered signal. Before, we were adding the difference signal to the dry signal. Now, we&amp;rsquo;re adding the processed difference signal to the wet signal. We could have used the dry signal; we have a choice here between &lt;code&gt;a[n] + compress(b - a)[n]&lt;/code&gt; and &lt;code&gt;b[n] + compress(a - b)[n]&lt;/code&gt;. For compression, I find the latter much easier to reason about. The opposite way still works, but you&amp;rsquo;re adding in a phase-inverted copy of compressed frequencies to the dry signal. I have no intuition for that.&lt;/p&gt;
-
+&lt;p&gt;The reason why you&#39;d want to use the filters described above is that we can recover the original signal exactly by mixing them together again: &lt;code&gt;x[n] = lp[n] + hp[n]&lt;/code&gt;. We don&#39;t have to think about how we parameterise the filters or anything because we&#39;ve used our phase inversion trick to make one filter from the other. Now all that is left is to compress just one of those filtered signals, do the sum, and we have a multiband compressor. Building this out in a DAW can be tricky but, to be clear here, it lets you combine &lt;em&gt;any&lt;/em&gt; set of filter plugins and &lt;em&gt;any&lt;/em&gt; set of compressor plugins into a multiband compressor. That includes parametric equalisers, and doesn&#39;t have the weird overlapping spectrums that throwing bandpass filters around everywhere does.&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;To do this, you need to remove the frequencies you want to compress, compress the difference signal, then add it back to the filtered signal. Before, we were adding the difference signal to the dry signal. Now, we&#39;re adding the processed difference signal to the wet signal. We could have used the dry signal; we have a choice here between &lt;code&gt;a[n] + compress(b - a)[n]&lt;/code&gt; and &lt;code&gt;b[n] + compress(a - b)[n]&lt;/code&gt;. For compression, I find the latter much easier to reason about. The opposite way still works, but you&#39;re adding in a phase-inverted copy of compressed frequencies to the dry signal. I have no intuition for that.&lt;/p&gt;
 &lt;h3 id=&#34;compressors&#34;&gt;Compressors&lt;/h3&gt;
-
-&lt;p&gt;The above has a degree of conceptual elegance, which we&amp;rsquo;ll now dispense with. Let&amp;rsquo;s take the signal&lt;/p&gt;
-
+&lt;p&gt;The above has a degree of conceptual elegance, which we&#39;ll now dispense with. Let&#39;s take the signal&lt;/p&gt;
 &lt;blockquote&gt;
 
 &lt;span class=&#34;svg&#34;&gt;&lt;svg height=&#34;108pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 475.2 108&#34; width=&#34;475.2pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
@@ -2066,9 +2080,7 @@ L 453.6 58.630737
 
 
 &lt;/blockquote&gt;
-
 &lt;p&gt;and use a compressor to flatten its peaks.&lt;/p&gt;
-
 &lt;blockquote&gt;
 
 &lt;span class=&#34;svg&#34;&gt;&lt;svg height=&#34;108pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 475.2 108&#34; width=&#34;475.2pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
@@ -3009,9 +3021,7 @@ L 453.6 58.634033
 
 
 &lt;/blockquote&gt;
-
 &lt;p&gt;This sounds dreadful, but we can subtract it from the original signal to produce&lt;/p&gt;
-
 &lt;blockquote&gt;
 
 &lt;span class=&#34;svg&#34;&gt;&lt;svg height=&#34;108pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 475.2 108&#34; width=&#34;475.2pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
@@ -3304,11 +3314,8 @@ L 453.6 54.001648
 
 
 &lt;/blockquote&gt;
-
-&lt;p&gt;which gives the peaks, and we can do whatever we want with them. But the isolation isn&amp;rsquo;t perfect. The decaying tone causes the compressor to dampen the signal more when the tone is loud, and some of the tone ends up in the peaks signal.  What we care about is that they sum exactly to the original signal, and we can now process them independently.&lt;/p&gt;
-
+&lt;p&gt;which gives the peaks, and we can do whatever we want with them. But the isolation isn&#39;t perfect. The decaying tone causes the compressor to dampen the signal more when the tone is loud, and some of the tone ends up in the peaks signal.  What we care about is that they sum exactly to the original signal, and we can now process them independently.&lt;/p&gt;
 &lt;h2 id=&#34;saturators&#34;&gt;Saturators&lt;/h2&gt;
-
 &lt;p&gt;Applying a saturator to the difference signal of a saturator &lt;em&gt;reduces&lt;/em&gt; the amount of distortion. The simplest saturator is the hard-clip 
 &lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
 
@@ -3759,16 +3766,11 @@ L 27.490909 2.97
 &lt;/svg&gt;
 &lt;/span&gt;
 
-. This saturator doesn&amp;rsquo;t clip very quiet or very loud signal values, only those somewhere inbetween.&lt;/p&gt;
-
+. This saturator doesn&#39;t clip very quiet or very loud signal values, only those somewhere inbetween.&lt;/p&gt;
 &lt;p&gt;One of the nice things about this is that good saturators have good anti-aliasing, and so will any curves you make this way.&lt;/p&gt;
-
 &lt;p&gt;Less esoterically, think of saturation as adding harmonic content. Taking the difference isolates the added harmonics, and you can apply EQ to them.&lt;/p&gt;
-
-&lt;p&gt;Another option is to EQ before saturating, take the difference between the EQ&amp;rsquo;d and saturated signals, then add that back to the original signal. Now you have a saturator that responds differently to certain frequencies. Mixing linear and non-linear effects this way will mess with any intuition you have for them&amp;ndash;don&amp;rsquo;t think you&amp;rsquo;re being scientific when you do this.&lt;/p&gt;
-
+&lt;p&gt;Another option is to EQ before saturating, take the difference between the EQ&#39;d and saturated signals, then add that back to the original signal. Now you have a saturator that responds differently to certain frequencies. Mixing linear and non-linear effects this way will mess with any intuition you have for them&amp;ndash;don&#39;t think you&#39;re being scientific when you do this.&lt;/p&gt;
 &lt;h3 id=&#34;bit-depth-reduction&#34;&gt;Bit-depth Reduction&lt;/h3&gt;
-
 &lt;p&gt;You can think of bit-depth reduction as an extreme saturation curve, 
 &lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
 
@@ -3950,40 +3952,31 @@ L 27.490909 9
 &lt;/span&gt;
 
 .&lt;/p&gt;
-
-&lt;p&gt;There are two ways to interpret it. One is that it&amp;rsquo;s wraparound distortion (see the &lt;a href=&#34;https://docs.cycling74.com/max7/maxobject/pong~&#34;&gt;pong~&lt;/a&gt; object in Max/MSP). Another is that it&amp;rsquo;s giving you back the bits the other curve throws away. Either way, I like experimenting with this. I&amp;rsquo;m one of those unfortunate people who likes the sound of bit crushing, and you can use this to get a lot more variation (and dynamic range) out of it.&lt;/p&gt;
-
+&lt;p&gt;There are two ways to interpret it. One is that it&#39;s wraparound distortion (see the &lt;a href=&#34;https://docs.cycling74.com/max7/maxobject/pong~&#34;&gt;pong~&lt;/a&gt; object in Max/MSP). Another is that it&#39;s giving you back the bits the other curve throws away. Either way, I like experimenting with this. I&#39;m one of those unfortunate people who likes the sound of bit crushing, and you can use this to get a lot more variation (and dynamic range) out of it.&lt;/p&gt;
 &lt;h3 id=&#34;doing-it&#34;&gt;Doing It&lt;/h3&gt;
-
-&lt;p&gt;The best way of actually doing this took me a while to figure out. I use Ableton Live, which has audio effect racks. They are almost enough to do everything we want to do, but if you&amp;rsquo;re using a DAW that instead relies on complex routing, it might be too unwieldly to use in practice. I&amp;rsquo;ve settled on using two audio effect racks, one for the &lt;code&gt;a[n] + (b[n] - a[n])&lt;/code&gt; case, and another for the &lt;code&gt;b[n] + (a[n] - b[n])&lt;/code&gt; case, which I call positive and negative.&lt;/p&gt;
-
+&lt;p&gt;The best way of actually doing this took me a while to figure out. I use Ableton Live, which has audio effect racks. They are almost enough to do everything we want to do, but if you&#39;re using a DAW that instead relies on complex routing, it might be too unwieldly to use in practice. I&#39;ve settled on using two audio effect racks, one for the &lt;code&gt;a[n] + (b[n] - a[n])&lt;/code&gt; case, and another for the &lt;code&gt;b[n] + (a[n] - b[n])&lt;/code&gt; case, which I call positive and negative.&lt;/p&gt;
 &lt;p&gt;The positive case is easiest, because &lt;code&gt;a[n]&lt;/code&gt; is the original dry signal, and we can duplicate it as needed by adding more chains to an audio effect rack.&lt;/p&gt;
-
 
 &lt;div style=&#34;display: flex; justify-content: center;&#34; /&gt;
     &lt;img src=&#34;https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/AER1.png&#34;/&gt;
 &lt;/div&gt;
 
 
-
 &lt;p&gt;The outer A chain is empty. The inner -A chain contains a utility effect with both channels inverted. Then, you place any effect you want the difference signal of in the B chain, and can process the difference signal after the inner audio effect rack. The utility effects gain knob acts as a dry/wet mix; the effect is 100% wet at 0 dB.&lt;/p&gt;
-
-&lt;p&gt;The negative case is more tricky. Implementing &lt;code&gt;b[n] + (a[n] - b[n])&lt;/code&gt; requires routing that effect racks can&amp;rsquo;t do. You could produce &lt;code&gt;b&lt;/code&gt; twice, but having to update the every parameter twice (or being limited to the effect rack&amp;rsquo;s macro controls) is a huge pain. Instead, I use the side chain from some of Ableton&amp;rsquo;s effects, which can capture audio before or after any effect rack. &lt;a href=&#34;posts/dumb-tricks-with-phase-inversion/AER2.png&#34;&gt;See here for an image&lt;/a&gt;, where I&amp;rsquo;ve used the compressor&amp;rsquo;s side chain, set to audition, to tap audio from the B chain before inverting it. To use this, we put an effect in the B chain, and everything after the inner effect rack is the difference signal. Collapse the side chain rack and never think about it. This effect&amp;rsquo;s final utility gain is 100% dry at 0 dB (if the difference signal is left unmodified).&lt;/p&gt;
-
-&lt;p&gt;One thing is missing from these: it&amp;rsquo;s really nice to be able to apply effects to the original signal after we&amp;rsquo;ve used it to produce a difference signal but before we&amp;rsquo;ve summed them back together. To do that, put another empty effect rack in the A (positive) or B (negative) chain, and use the side chain audition to tap that rack pre-fx. Now, anything before the emtpy rack gets differenced, and anything after only gets sent to the output.&lt;/p&gt;
-
-&lt;p&gt;I think you should figure out recreating this for yourself, or even find your own solution, because keeping track of what signal you&amp;rsquo;re producing and what needs to be inverted at what point in the signal chain is informative. My early attempts weren&amp;rsquo;t pretty. But if you&amp;rsquo;d rather just use mine, here&amp;rsquo;s &lt;a href=&#34;https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/Difference (Positive).adg&#34;&gt;Difference (Positive)&lt;/a&gt; and &lt;a href=&#34;https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/Difference (Negative).adg&#34;&gt;Difference (Negative)&lt;/a&gt; (Live 10. I don&amp;rsquo;t know if these things are backwards compatible, but I don&amp;rsquo;t use any features that are 10 only).&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
+&lt;p&gt;The negative case is more tricky. Implementing &lt;code&gt;b[n] + (a[n] - b[n])&lt;/code&gt; requires routing that effect racks can&#39;t do. You could produce &lt;code&gt;b&lt;/code&gt; twice, but having to update the every parameter twice (or being limited to the effect rack&#39;s macro controls) is a huge pain. Instead, I use the side chain from some of Ableton&#39;s effects, which can capture audio before or after any effect rack. &lt;a href=&#34;posts/dumb-tricks-with-phase-inversion/AER2.png&#34;&gt;See here for an image&lt;/a&gt;, where I&#39;ve used the compressor&#39;s side chain, set to audition, to tap audio from the B chain before inverting it. To use this, we put an effect in the B chain, and everything after the inner effect rack is the difference signal. Collapse the side chain rack and never think about it. This effect&#39;s final utility gain is 100% dry at 0 dB (if the difference signal is left unmodified).&lt;/p&gt;
+&lt;p&gt;One thing is missing from these: it&#39;s really nice to be able to apply effects to the original signal after we&#39;ve used it to produce a difference signal but before we&#39;ve summed them back together. To do that, put another empty effect rack in the A (positive) or B (negative) chain, and use the side chain audition to tap that rack pre-fx. Now, anything before the emtpy rack gets differenced, and anything after only gets sent to the output.&lt;/p&gt;
+&lt;p&gt;I think you should figure out recreating this for yourself, or even find your own solution, because keeping track of what signal you&#39;re producing and what needs to be inverted at what point in the signal chain is informative. My early attempts weren&#39;t pretty. But if you&#39;d rather just use mine, here&#39;s [Difference (Positive)](/posts/dumb-tricks-with-phase-inversion/Difference (Positive).adg) and [Difference (Negative)](/posts/dumb-tricks-with-phase-inversion/Difference (Negative).adg) (Live 10. I don&#39;t know if these things are backwards compatible, but I don&#39;t use any features that are 10 only).&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;The process for finding the frequency content of a signal, the fourier transform, &lt;a href=&#34;https://math.stackexchange.com/questions/140788/how-is-the-fourier-transform-linear&#34;&gt;is linear&lt;/a&gt;.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;One thing I&amp;rsquo;m taking for granted here is that plugins correctly report the delay they introduce to the signal chain. It&amp;rsquo;s hard to write a compressor people want to use without knowing exactly how much delay you&amp;rsquo;re inserting into the signal chain, but equalisers and filters can introduce frequency-specific delays. I couldn&amp;rsquo;t say how common or uncommon it is for plugins to handle this properly. All this still works, but the difference signal contains information you don&amp;rsquo;t want it to contain. Then again, if a filter is messing with the phase of your audio, it&amp;rsquo;s already screwing up your audio! You don&amp;rsquo;t care about theoretical correctness if you&amp;rsquo;re still using that filter.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;The process for finding the frequency content of a signal, the fourier transform, &lt;a href=&#34;https://math.stackexchange.com/questions/140788/how-is-the-fourier-transform-linear&#34;&gt;is linear&lt;/a&gt;. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;One thing I&#39;m taking for granted here is that plugins correctly report the delay they introduce to the signal chain. It&#39;s hard to write a compressor people want to use without knowing exactly how much delay you&#39;re inserting into the signal chain, but equalisers and filters can introduce frequency-specific delays. I couldn&#39;t say how common or uncommon it is for plugins to handle this properly. All this still works, but the difference signal contains information you don&#39;t want it to contain. Then again, if a filter is messing with the phase of your audio, it&#39;s already screwing up your audio! You don&#39;t care about theoretical correctness if you&#39;re still using that filter. &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;
+&lt;/section&gt;
 </description>
     </item>
     

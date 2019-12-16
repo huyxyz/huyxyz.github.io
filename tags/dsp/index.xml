@@ -50,19 +50,19 @@
     &lt;span style=&#34;color:#66d9ef&#34;&gt;assert&lt;/span&gt;(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;isrealobj(x)) &lt;span style=&#34;color:#75715e&#34;&gt;# real signals only. i&amp;#39;m lazy&lt;/span&gt;
 
     n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; len(x)
-    nyquist &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+    nyquist &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
 
     y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fft&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fft(x)
 
     m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;arange(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, nyquist, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
     coefs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (m&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;m)
 
-    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, nyquist&lt;span style=&#34;color:#f92672&#34;&gt;//&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, nyquist&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;):
         &lt;span style=&#34;color:#75715e&#34;&gt;# indices of the non-zero components of a triangle wave&lt;/span&gt;
         &lt;span style=&#34;color:#75715e&#34;&gt;# with fundamental frequency k, not including the fundamental&lt;/span&gt;
         nz &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;arange(k&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, nyquist, k&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
         &lt;span style=&#34;color:#75715e&#34;&gt;# construct the frequency domain of the triangle wave and subtract it off&lt;/span&gt;
-        y[nz] &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abs(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; coefs[:len(nz)] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; cis(nz &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;angle(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; k))
+        y[nz] &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;abs(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; coefs[:len(nz)] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; cis(nz &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;angle(y[k]) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; k))
 
     &lt;span style=&#34;color:#75715e&#34;&gt;# fix up conjugate symmetry&lt;/span&gt;
     y[nyquist&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;conj(y[nyquist&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
