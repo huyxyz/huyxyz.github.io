@@ -2,15 +2,22 @@ body {
     background-color: rgb(255, 253, 252);
     display: flex;
     font-family: "Times New Roman", serif;
-    font-size: 18px;
+    font-size: 1em;
     justify-content: center;
     margin: 0 2em 0 2em;
     line-height: 1.4em;
+    overflow-x: hidden;
 }
 
 .content {
     flex: 0 1 auto;
     width: 42em;
+}
+
+@media (max-width: 49.1228em) {
+    .content {
+        width: 85vw;
+    }
 }
 
 .about {
@@ -56,6 +63,12 @@ h1 > a, h2 > a, h3 > a, h4 > a, a.icon {
     text-decoration: none;
 }
 
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(87, 44, 0, 0.1);
+}
+
 .svgi > svg {
     vertical-align: middle;
 }
@@ -63,7 +76,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, a.icon {
 code {
     white-space: pre;
     font-family: "Consolas";
-    font-size: 14px;
+    font-size: 0.8em;
 }
 
 blockquote.aside {
@@ -82,7 +95,7 @@ blockquote.aside {
 }
 
 .tags.post-tags {
-    font-size: 16px;
+    font-size: 0.9em;
     justify-content: flex-end;
     margin: 0;
 }
@@ -118,7 +131,7 @@ blockquote.aside {
 }
 
 .rss-link {
-    font-size: 12px;
+    font-size: 0.8em;
     text-align: right;
 }
 
@@ -155,7 +168,7 @@ p code {
 }
 
 .highlight code {
-    font-size: 14px;
+    font-size: 0.83em;
 }
 
 .highlight > pre::before {
@@ -170,8 +183,23 @@ p code {
     padding: .125em 0;
 }
 
-@media (min-width: 42em) {
-    body {
-        overflow-x: hidden;
+.img-flex {
+    background-color: rgb(255, 253, 252);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100vw;
+    left: calc(50% - 50vw);
+}
+
+.img-flex > img {
+    margin: 0.5em;
+}
+
+@media (min-width: 84em) {
+    .img-flex {
+        width: 84em;
+        left: calc(50% - 42em);
     }
 }

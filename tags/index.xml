@@ -6,46 +6,10 @@
     <description>Recent content in Tags on graeme phillips posting</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Dec 2019 13:29:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://graemephi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>graphics</title>
-      <link>https://graemephi.github.io/tags/graphics/</link>
-      <pubDate>Tue, 31 Dec 2019 13:29:00 +0000</pubDate>
-      
-      <guid>https://graemephi.github.io/tags/graphics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dsp</title>
-      <link>https://graemephi.github.io/tags/dsp/</link>
-      <pubDate>Sat, 14 Dec 2019 18:34:03 +0100</pubDate>
-      
-      <guid>https://graemephi.github.io/tags/dsp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>maths</title>
-      <link>https://graemephi.github.io/tags/maths/</link>
-      <pubDate>Sat, 14 Dec 2019 18:34:03 +0100</pubDate>
-      
-      <guid>https://graemephi.github.io/tags/maths/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>audio</title>
-      <link>https://graemephi.github.io/tags/audio/</link>
-      <pubDate>Sun, 02 Jun 2019 12:34:03 +0100</pubDate>
-      
-      <guid>https://graemephi.github.io/tags/audio/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>
