@@ -13,10 +13,10 @@
     
     <item>
       <title>stb_ds: string interning</title>
-      <link>https://graemephi.github.io/posts/stb_ds/</link>
+      <link>https://graemephi.github.io/posts/stb_ds-string-interning/</link>
       <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://graemephi.github.io/posts/stb_ds/</guid>
+      <guid>https://graemephi.github.io/posts/stb_ds-string-interning/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/nothings/stb&#34;&gt;stb_ds&lt;/a&gt; is a generic container library for C. It was probably from seeing the same technique in &lt;a href=&#34;https://github.com/pervognsen/bitwise&#34;&gt;bitwise&lt;/a&gt;, but I&amp;rsquo;ve had it at the back of my mind for a while now that one of the good use cases for stb_ds was easy string interning. But it&amp;rsquo;s not mentioned anywhere, not even in the &lt;a href=&#34;http://nothings.org/stb_ds&#34;&gt;gentle introduction&lt;/a&gt;! Well, the pieces are there, but how to put them together is a little subtle.&lt;/p&gt;
 &lt;p&gt;By the way, string interning is when you keep at most one copy of a given string in memory, and use immutable references to such copies as your string value type. In return, you get &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(1)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; string equality and you use less memory.&lt;/p&gt;
 &lt;p&gt;You can do string interning with a single stb_ds hash table, and that&amp;rsquo;s it. I&amp;rsquo;m pretty sure stb_ds is designed to ensure that this is possible&amp;ndash;you can&amp;rsquo;t do it with most hash tables. Several features fitting together just right makes it work.&lt;/p&gt;
