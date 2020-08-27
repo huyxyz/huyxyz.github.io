@@ -6,10 +6,67 @@
     <description>Recent content in Posts on graeme phillips posting</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://graemephi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>stb_ds: string interning</title>
+      <link>https://graemephi.github.io/posts/stb_ds/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://graemephi.github.io/posts/stb_ds/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/nothings/stb&#34;&gt;stb_ds&lt;/a&gt; is a generic container library for C. It was probably from seeing the same technique in &lt;a href=&#34;https://github.com/pervognsen/bitwise&#34;&gt;bitwise&lt;/a&gt;, but I&amp;rsquo;ve had it at the back of my mind for a while now that one of the good use cases for stb_ds was easy string interning. But it&amp;rsquo;s not mentioned anywhere, not even in the &lt;a href=&#34;http://nothings.org/stb_ds&#34;&gt;gentle introduction&lt;/a&gt;! Well, the pieces are there, but how to put them together is a little subtle.&lt;/p&gt;
+&lt;p&gt;By the way, string interning is when you keep at most one copy of a given string in memory, and use immutable references to such copies as your string value type. In return, you get &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(1)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; string equality and you use less memory.&lt;/p&gt;
+&lt;p&gt;You can do string interning with a single stb_ds hash table, and that&amp;rsquo;s it. I&amp;rsquo;m pretty sure stb_ds is designed to ensure that this is possible&amp;ndash;you can&amp;rsquo;t do it with most hash tables. Several features fitting together just right makes it work.&lt;/p&gt;
+&lt;p&gt;First, table entries are stored contiguously in memory, and their order is stable, even when the hash table is resized. This is in constrast to other hash table implementations that store their data in sparse arrays. This isn&amp;rsquo;t just an implementation detail but a documented part of the API. For more on why you might want a hash table that does this, check out &lt;a href=&#34;https://morepypy.blogspot.com/2015/01/faster-more-memory-efficient-and-more.html&#34;&gt;this blog post from PyPy&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Second, stb_ds can hash strings for use as key types. Once you have string interning, you only need primitive type keys for your hash tables. But if you don&amp;rsquo;t have proper string keys before you have interning, you need to figure out what you&amp;rsquo;re doing. We don&amp;rsquo;t have to worry about it.&lt;/p&gt;
+&lt;p&gt;Third, string hash tables can be configured to store their keys in a memory arena managed by the hash table. This means we won&amp;rsquo;t have to manage the intern pool memory at all. The arena gives us stable pointers and minimises the number of calls to the underlying allocator.&lt;/p&gt;
+&lt;p&gt;And lastly, although stb_ds&amp;rsquo;s hash table maps keys to values, it&amp;rsquo;s possible to use it without specifying values at all. (And you don&amp;rsquo;t waste any space doing this.)&lt;/p&gt;
+&lt;p&gt;All of these are useful in their own right! But check this out:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; { &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;key; } Intern;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; Intern &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;interns &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; NULL;
+
+ptrdiff_t &lt;span style=&#34;color:#a6e22e&#34;&gt;intern&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;str)
+{
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (str &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; NULL) {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+    }
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (interns &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; NULL) {
+        sh_new_arena(interns);
+    }
+    ptrdiff_t result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; shgeti(interns, str);
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (result &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+        shputs(interns, (Intern) { .key &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; str });
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; shlen(interns) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+    }
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result;
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;from_intern&lt;/span&gt;(ptrdiff_t handle)
+{
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; NULL;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (handle &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; handle &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; shlen(interns)) {
+        result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; interns[handle].key;
+    }
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Table entries go into the hash table as just a key, without a corresponding value. To get a value to use as a handle, we use their index in the table&amp;rsquo;s key storage. When we want to turn a handle back into &lt;code&gt;char *&lt;/code&gt;, we index off the &lt;code&gt;interns&lt;/code&gt; pointer.&lt;/p&gt;
+&lt;p&gt;Since pointers to the interned strings are stable, you might want to hand out those pointers directly, instead of handles. On the other hand, pointer-sized handles are somewhat big on 64-bit systems, so there you might want to use a smaller handle type. On 64-bit, the above code is a bit worst-of-both-worlds, but I wanted to show the idea as cleanly as possible.&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re using a version of stb_ds older than v0.65 the above code won&amp;rsquo;t work, as using &lt;code&gt;shputs&lt;/code&gt; will store the pointer in &lt;code&gt;key&lt;/code&gt; directly instead of a pointer to the copy it will allocate from the arena. Prior to v0.65, you had to manage the intern pool&amp;rsquo;s memory directly. That&amp;rsquo;s okay, because stb_ds exposes its internal memory arena functionality as part of the API. The idea is the same, just slightly less convenient.&lt;/p&gt;
+&lt;p&gt;Also, I first call &lt;code&gt;shgeti&lt;/code&gt; there, but you really ought to be able to get away with just calling &lt;code&gt;shputs&lt;/code&gt; and calling it a day. If you use pointers instead of handles this works, because &lt;code&gt;shputs&lt;/code&gt; returns the inserted key. But I&amp;rsquo;m not convinced you can rely on that for future versions.&lt;/p&gt;
+&lt;p&gt;And&amp;hellip; I think that&amp;rsquo;s it.&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;If they&amp;rsquo;re smaller than pointer-sized, handles can overflow. I figure if I post code it should be working code that can be copy-pasted somewhere without blowing up some indeterminate time in the future. Although, I&amp;rsquo;m not keen on the behaviour it has with null strings and invalid handles. I feel like both of those indicate that bad things are happening, and returning null pointers is just adding fuel to the fire. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</description>
+    </item>
     
     <item>
       <title>i made a twitter bot: deep sky object</title>
