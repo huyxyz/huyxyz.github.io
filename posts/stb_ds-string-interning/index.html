@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="generator" content="Hugo 0.72.0-DEV" />
+        <meta name="generator" content="Hugo 0.90.0-DEV" />
         <title>stb_ds: string interning - graeme phillips posting</title>
         <link href="/css/katex.min.css" rel="stylesheet" type="text/css">
 
@@ -58,7 +58,7 @@
 <p>Third, string hash tables can be configured to store their keys in a memory arena managed by the hash table. This means we won&rsquo;t have to manage the intern pool memory at all. The arena gives us stable pointers and minimises the number of calls to the underlying allocator.</p>
 <p>And lastly, although stb_ds&rsquo;s hash table maps keys to values, it&rsquo;s possible to use it without specifying values at all. (And you don&rsquo;t waste any space doing this.)</p>
 <p>All of these are useful in their own right! But check this out:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> { <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>key; } Intern;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> { <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>key; } Intern;
 <span style="color:#66d9ef">static</span> Intern <span style="color:#f92672">*</span>interns <span style="color:#f92672">=</span> NULL;
 
 ptrdiff_t <span style="color:#a6e22e">intern</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str)
@@ -94,12 +94,13 @@ ptrdiff_t <span style="color:#a6e22e">intern</span>(<span style="color:#66d9ef">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>If they&rsquo;re smaller than pointer-sized, handles can overflow. I figure if I post code it should be working code that can be copy-pasted somewhere without blowing up some indeterminate time in the future. Although, I&rsquo;m not keen on the behaviour it has with null strings and invalid handles. I feel like both of those indicate that bad things are happening, and returning null pointers is just adding fuel to the fire. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>If they&rsquo;re smaller than pointer-sized, handles can overflow. I figure if I post code it should be working code that can be copy-pasted somewhere without blowing up some indeterminate time in the future. Although, I&rsquo;m not keen on the behaviour it has with null strings and invalid handles. I feel like both of those indicate that bad things are happening, and returning null pointers is just adding fuel to the fire.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
 
 </div>
+
 
 
             
@@ -109,6 +110,10 @@ ptrdiff_t <span style="color:#a6e22e">intern</span>(<span style="color:#66d9ef">
 
     <h3>More Posts</h3>
     <ol reversed>
+
+<li style="list-style: none">
+    <a href="https://graemephi.github.io/posts/difference-decay/">Difference Decay</a> (2021-12-29)
+</li>
 
 <li style="list-style: none">
     <a href="https://graemephi.github.io/posts/deep-sky-object/">i made a twitter bot: deep sky object</a> (2020-05-20)

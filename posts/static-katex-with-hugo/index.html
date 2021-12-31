@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="generator" content="Hugo 0.72.0-DEV" />
+        <meta name="generator" content="Hugo 0.90.0-DEV" />
         <title>Server-side KaTeX With Hugo - graeme phillips posting</title>
         <link href="/css/katex.min.css" rel="stylesheet" type="text/css">
 
@@ -43,7 +43,7 @@
 <p><a href="https://gohugo.io/">Hugo</a> is a static website generator written in Go. <a href="https://katex.org/">Katex</a> is a math typesetting library written in Javascript. This site uses them both.</p>
 <p>I keep javascript turned off on websites unless white-listed. I notice when websites fail to load without javascript and I notice when websites don&rsquo;t require it at all. I&rsquo;d like mine to be one of the latter, but also, I want to have proper maths typesetting. Now, usually the way you get maths onto the internet is you dump some LaTeX surrounded by $$ into a document, embed some random javascript file, and everything happens automatically. I don&rsquo;t like that.</p>
 <p>What I want instead is for Hugo to typeset my maths. But I still want <code>hugo server</code> to render everything properly, and I don&rsquo;t want a complicated multi-stage build process, and I <em>really</em> don&rsquo;t want to maintain my own build of Hugo. Basically, I want to be able to dump the Hugo executable somewhere and have everything work when I type</p>
-<pre><code class="language-terminal" data-lang="terminal">cd blog
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">cd blog
 hugo
 </code></pre><p>Unfortunately, Hugo doesn&rsquo;t really support Katex per se. It uses Markdown parsers that know to leave text surrounded by $$ alone, and Katex searches for them at page-load. These parsers are compiled into Hugo, and at no point can you intercept them to do further processing of your own.</p>
 <p>But Hugo supports <a href="https://pandoc.org/">Pandoc</a>, and Pandoc is happy to pass you a copy of the AST to fiddle with before it actually renders anything. What&rsquo;s more, Pandoc knows that $ means inline maths and $$ means display maths, so we can just read that information off of the AST and have Katex format it as inline or display appropriately.</p>
@@ -60,7 +60,7 @@ hugo
 <p>There is a simple, elegant, and generally terrible solution to both of these problems.</p>
 <p>The reason Hugo can call out to Pandoc, and the reason Pandoc can call out to Node, at all, is because they&rsquo;re both in <code>PATH</code>. So, we just have to arrange <code>PATH</code> to our liking before running Hugo. I always run Hugo from VSCode, so I can do this on a per-project basis, and not contaminate the rest of my system with this, ah, workaround.</p>
 <p>I didn&rsquo;t investigate the best way to do this; I suspect on Linux it would be a bit easier. But, on Windows, I didn&rsquo;t want to think too hard about it, so I just compiled a couple C programs. Now I have the following folder structure:</p>
-<pre><code class="language-terminal" data-lang="terminal">blog/
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">blog/
 ├── content/
 ├── ...
 └── pandoc/
@@ -70,7 +70,7 @@ hugo
      └── pandoc.exe
 </code></pre><p>The first directory in <code>PATH</code> whenever I run Hugo is <code>path/to/blog/pandoc</code>. <code>node_modules</code> contains only Katex, required by <code>katex.js</code>, the pandoc filter. <code>katex.exe</code> opens a pipe to <code>node pandoc/katex.js</code> and <code>pandoc.exe</code> opens a pipe to <code>pandoc --katex --filter=katex</code>. Full paths to these are hard-coded into the executables, because I never learn.</p>
 <p>Then, in the front matter for a post that needs Katex, we use the Pandoc renderer:</p>
-<pre><code class="language-terminal" data-lang="terminal">---
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">---
 title: &quot;Static Katex With Hugo&quot;
 date: 2019-12-16T02:01:49Z
 markup: pandoc
@@ -83,6 +83,7 @@ markup: pandoc
 </div>
 
 
+
             
     
 
@@ -90,6 +91,10 @@ markup: pandoc
 
     <h3>More Posts</h3>
     <ol reversed>
+
+<li style="list-style: none">
+    <a href="https://graemephi.github.io/posts/difference-decay/">Difference Decay</a> (2021-12-29)
+</li>
 
 <li style="list-style: none">
     <a href="https://graemephi.github.io/posts/stb_ds-string-interning/">stb_ds: string interning</a> (2020-08-27)

@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="generator" content="Hugo 0.72.0-DEV" />
+        <meta name="generator" content="Hugo 0.90.0-DEV" />
         <title>i made a twitter bot: deep sky object - graeme phillips posting</title>
         <link href="/css/katex.min.css" rel="stylesheet" type="text/css">
 
@@ -91,13 +91,13 @@
 <p>The bot part that talks to twitter is just javascript that lives on <a href="https://tiny-dso.glitch.me/">glitch</a>. The <a href="https://github.com/graemephi/starfield">image generator</a> is an executable that spits pngs out of standard out.</p>
 <hr>
 <p>It&rsquo;s written in ion, the language Per Vognsen created for <a href="https://github.com/pervognsen/bitwise">bitwise</a>. It&rsquo;s basically C99, except you can omit type names sometimes, you use <code>.</code> instead of <code>-&gt;</code>, and there is some notion of modules. Oh, and it has out of order declarations. I think when I started writing this the language was fully 2 weeks old. It looked pretty cool and I didn&rsquo;t want to use any libraries in this project<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, so it fit my needs fine. As new and unfinished compilers go, it was pretty reliable. But it didn&rsquo;t receive a whole lot of development past that. Coming back to the code to get the images onto twitter I found it had some bugs to work around, mostly to do with getting it to generate code that would compile on linux<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
-<p>I found tweaking the image generation intolerable if it took more than half a second or so, so I spent some time optimising it. That means multi-threading, vector instructions, and a lot of profiling. This wasn&rsquo;t a problem with ion, because can generate C code, and will take your word for it if you tell it some function or type exists. Also, it uses the C preprocessor to get line information to debuggers (and profilers). All in all, very nice. Good language.</p>
+<p>I found tweaking the image generation intolerable if it took more than half a second or so, so I spent some time optimising it. That means multi-threading, vector instructions, and a lot of profiling. This wasn&rsquo;t a problem with ion, because it can generate C code, and will take your word for it if you tell it some function or type exists. Also, it uses the C preprocessor to get line information to debuggers (and profilers). All in all, very nice. Good language.</p>
 <hr>
 <p>I learned early on that the easiest way to render a passable looking star was to place a single white pixel on an otherwise blank texture and just use <a href="https://graemephi.github.io/posts/calculating-lod/">mipmaps</a> to filter it for rendering. Rotating a shrunken, very bright, pixel gets you endless variation on how the stars look.</p>
 <p>Pixel values fall in the range <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> and, if you think on it, stars really ought to be much brighter than that. So this method works best if you just let your values overflow then adaptively crunch the image back down with post-processing. Most astrophotography has gone through reams of processing, anyway.</p>
 <hr>
 <p>All the &ldquo;pixel shader&rdquo;-like work is done using a pair of functions, <code>pixel_iter_begin</code> and <code>pixel_iter_next</code>. Rather than explaining what they do, here&rsquo;s the code for drawing a texture:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">draw_tex</span>(dest: Image<span style="color:#f92672">*</span>, target: Rect, tex: Tex<span style="color:#f92672">*</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">draw_tex</span>(dest: Image<span style="color:#f92672">*</span>, target: Rect, tex: Tex<span style="color:#f92672">*</span>) {
     lod :<span style="color:#f92672">=</span> compute_lod_level(dest.size, target.size, tex.size);
     <span style="color:#66d9ef">for</span> (it :<span style="color:#f92672">=</span> pixel_iter_begin(dest, target); pixel_iter_next(<span style="color:#f92672">&amp;</span>it)) {
         rgba :<span style="color:#f92672">=</span> tex_lookup_lod(tex, it.npos, lod);
@@ -106,7 +106,7 @@
 }
 </code></pre></div><p>This would work in C, but it&rsquo;d look like <code>for (PixelIter it = ...; pixel_iter_next(&amp;it);) {} </code>. Note that trailing semicolon&ndash;<code>next</code> gets called before, not after, every iteration. Now, this way of iterating over pixels is very general and so pretty slow. It just makes doing pixel-by-pixel stuff extremely low friction to write code for. I think most programmers would reach for function pointers or generics to separate the pixel shading code from the iteration, but it&rsquo;s not necessary, and a pain to actually use. It turns out that the iterator code was not performance critical at all, so the overhead didn&rsquo;t matter much, and the implementation is also very naive.</p>
 <p>The pixel iterator also takes care of multi-threading. Here&rsquo;s the definition of the <code>Image</code> struct:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> Image {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> Image {
     pixels: Color<span style="color:#f92672">*</span>;
     size: int2;
     wr: WritableRegion;
@@ -115,9 +115,9 @@
 }
 </code></pre></div><p>The <code>WritableRegion</code> allows the pixel iterator to clip the pixels being iterated over to the block the thread is responsible for rendering. The code that actually uses the pixel iterator doesn&rsquo;t have to think about blocks or threads at all. It&rsquo;s nice!</p>
 <p>The drawback is that if you want to draw into a side buffer before compositing into a destination buffer, then you end up allocating the full <code>size</code> and only use a block in the middle somewhere. Avoiding that is what <code>stride</code> and <code>offset</code> are for. Usually, you&rsquo;d sample an individual pixel like this:</p>
-<pre><code>sample := img.pixels[pos.x + pos.y*img.x];
+<pre tabindex="0"><code>sample := img.pixels[pos.x + pos.y*img.x];
 </code></pre><p>Instead, I do this:</p>
-<pre><code>sample := img.pixels[pos.x + pos.y*img.stride - img.offset];
+<pre tabindex="0"><code>sample := img.pixels[pos.x + pos.y*img.stride - img.offset];
 </code></pre><p>This way, you can sample an image by talking about coordinates in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">[0, 1]^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> while the image only has storage allocated for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo separator="true">,</mo><mfrac><mn>4</mn><mn>8</mn></mfrac><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">[\frac{3}{8}, \frac{4}{8}]^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mopen">[</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> (for example), and all it takes is an extra subtraction.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <hr>
 <p>All the star colours are chosen by linearly interpolating between RGB values obtained by colour-picking from <a href="https://en.wikipedia.org/wiki/Stellar_classification#/media/File:TernaryColorTmap.PNG">wikipedia</a>. They&rsquo;re pretty close so I never had to do anything fancy involving splines or colour space transformations.</p>
@@ -136,18 +136,19 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Except <a href="https://github.com/nothings/stb">stb_image_write.h</a> for the pngs. On Windows, I don&rsquo;t write pngs, but render to a buffer managed by SDL. So they both have one dependency, but it&rsquo;s a different dependency, I guess. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Except <a href="https://github.com/nothings/stb">stb_image_write.h</a> for the pngs. On Windows, I don&rsquo;t write pngs, but render to a buffer managed by SDL. So they both have one dependency, but it&rsquo;s a different dependency, I guess.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>I think most, if not all, of those bugs have been fixed in <a href="https://github.com/uucidl/bitwise">this fork</a>. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>I think most, if not all, of those bugs have been fixed in <a href="https://github.com/uucidl/bitwise">this fork</a>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>You could also shunt the <code>pixels</code> pointer off into no-mans-land and pray  you get all new weird the boundary conditions right. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>You could also shunt the <code>pixels</code> pointer off into no-mans-land and pray  you get all the new weird boundary conditions right.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
 
 </div>
+
 
 
             
@@ -157,6 +158,10 @@
 
     <h3>More Posts</h3>
     <ol reversed>
+
+<li style="list-style: none">
+    <a href="https://graemephi.github.io/posts/difference-decay/">Difference Decay</a> (2021-12-29)
+</li>
 
 <li style="list-style: none">
     <a href="https://graemephi.github.io/posts/stb_ds-string-interning/">stb_ds: string interning</a> (2020-08-27)

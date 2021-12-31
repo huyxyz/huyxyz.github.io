@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="generator" content="Hugo 0.72.0-DEV" />
+        <meta name="generator" content="Hugo 0.90.0-DEV" />
         <title>Calculating LOD - graeme phillips posting</title>
         <link href="/css/katex.min.css" rel="stylesheet" type="text/css">
 
@@ -77,7 +77,7 @@
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mo stretchy="false">(</mo><mtext mathvariant="bold">p</mtext><mo>+</mo><mi>h</mi><mtext mathvariant="bold">x</mtext><mo stretchy="false">)</mo><mo>−</mo><mi>T</mi><mo stretchy="false">(</mo><mtext mathvariant="bold">p</mtext><mo stretchy="false">)</mo></mrow><mrow><mi>h</mi><mrow><mo fence="true">∥</mo><mtext mathvariant="bold">x</mtext><mo fence="true">∥</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex"> \frac{ T(\textbf{p} + h\textbf{x} ) - T(\textbf{p}) }{ h\left\| \textbf{x} \right\| }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∥</span><span class="mord text"><span class="mord textbf">x</span></span><span class="mclose delimcenter" style="top:0em;">∥</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord text"><span class="mord textbf">p</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">h</span><span class="mord text"><span class="mord textbf">x</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord text"><span class="mord textbf">p</span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>and making <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span></span></span></span> really small. So, we need two of these for the derivatives in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>, and you can get an approximation of them&ndash;basically this same one here&ndash;in OpenGL with <code>dFdx()</code> and <code>dFdy()</code>.</p>
 <p>In the shadertoy, this is all implemented like this.
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#75715e">// uv comes in as an interpolated input</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#75715e">// uv comes in as an interpolated input</span>
 <span style="color:#66d9ef">vec2</span> size <span style="color:#f92672">=</span> <span style="color:#66d9ef">vec2</span>(textureSize(iChannel0, <span style="color:#ae81ff">0</span>));
 
 <span style="color:#66d9ef">vec2</span> dx <span style="color:#f92672">=</span> dFdx(uv <span style="color:#f92672">*</span> size);
@@ -92,7 +92,7 @@
 
 
 <p>It should be black. The problem is obvious in retrospect, but rather than thinking too hard about it I had a look through the <a href="https://microsoft.github.io/DirectX-Specs/d3d/archive/D3D11_3_FunctionalSpec.htm#LODCalculation">DX11 Functional Specification</a>, which tells you to do this to the derivative vectors:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#66d9ef">float</span> A <span style="color:#f92672">=</span> dx.y <span style="color:#f92672">*</span> dx.y <span style="color:#f92672">+</span> dy.y <span style="color:#f92672">*</span> dy.y;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#66d9ef">float</span> A <span style="color:#f92672">=</span> dx.y <span style="color:#f92672">*</span> dx.y <span style="color:#f92672">+</span> dy.y <span style="color:#f92672">*</span> dy.y;
 <span style="color:#66d9ef">float</span> B <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2.0</span> <span style="color:#f92672">*</span> (dx.x <span style="color:#f92672">*</span> dx.y <span style="color:#f92672">+</span> dy.x <span style="color:#f92672">*</span> dy.y);
 <span style="color:#66d9ef">float</span> C <span style="color:#f92672">=</span> dx.x <span style="color:#f92672">*</span> dx.x <span style="color:#f92672">+</span> dy.x <span style="color:#f92672">*</span> dy.x;
 <span style="color:#66d9ef">float</span> F <span style="color:#f92672">=</span> dx.x <span style="color:#f92672">*</span> dy.y <span style="color:#f92672">-</span> dy.x <span style="color:#f92672">*</span> dx.y;
@@ -123,12 +123,12 @@ dy.y <span style="color:#f92672">=</span> sqrt(F <span style="color:#f92672">*</
 <p>Still not perfect, though. I&rsquo;m not sure what&rsquo;s missing. DX11 allows for approximations here, and OpenGL&rsquo;s specification doesn&rsquo;t really say anything at all about it, so maybe that&rsquo;s it. I&rsquo;m really not sure.</p>
 <h2 id="blocks">Blocks</h2>
 <p>Finally, when I first wrote the rasteriser I did it the natural way, something like</p>
-<pre><code>if (inside_triangle) {
+<pre tabindex="0"><code>if (inside_triangle) {
     color = calculate_color()
     write_pixel(color)
 }
 </code></pre><p>But if you look at the shadertoy now, you&rsquo;ll see it&rsquo;s written as</p>
-<pre><code>color = calculate_color()
+<pre tabindex="0"><code>color = calculate_color()
 if (inside_triangle) {
     write_pixel(color)
 }
@@ -140,6 +140,7 @@ if (inside_triangle) {
 </div>
 
 
+
             
     
 
@@ -147,6 +148,10 @@ if (inside_triangle) {
 
     <h3>More Posts</h3>
     <ol reversed>
+
+<li style="list-style: none">
+    <a href="https://graemephi.github.io/posts/difference-decay/">Difference Decay</a> (2021-12-29)
+</li>
 
 <li style="list-style: none">
     <a href="https://graemephi.github.io/posts/stb_ds-string-interning/">stb_ds: string interning</a> (2020-08-27)
