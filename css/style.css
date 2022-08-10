@@ -1,12 +1,16 @@
 body {
     background-color: rgb(255, 253, 252);
-    display: flex;
+    /* display: flex; */
     font-family: "Times New Roman", serif;
     font-size: 1em;
-    justify-content: center;
+    /* justify-content: center; */
     margin: 0 2em 0 2em;
     line-height: 1.4em;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+}
+body * {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content {
@@ -74,7 +78,7 @@ hr {
 }
 
 code {
-    white-space: pre;
+    /* white-space: pre; */
     font-family: "Consolas";
     font-size: 0.8em;
 }
@@ -128,6 +132,12 @@ blockquote.aside {
 .post img {
     display: block;
     margin: 0 auto;
+    max-width: calc(100vw - 1em);
+    height: auto;
+}
+
+.text-align-right {
+    text-align: right;
 }
 
 .rss-link {
@@ -146,7 +156,8 @@ blockquote.aside {
 pre.terminal, pre > code.language-terminal {
     background: #272822;
     padding: 0.66em 1em;
-    margin: -0.25em auto;
+    padding: 1em 2em;
+    margin: 1em -1em;
     color: #f8f8f2;
     display: block;
     border-radius: 5px;
@@ -163,24 +174,13 @@ p code {
 
 .highlight > pre {
     position: relative;
-    padding: .25em 0;
-    margin: -.25em 0;
+    padding: 1em 2em;
+    margin: 1em -1em;
+    overflow-x: auto;
 }
 
 .highlight code {
     font-size: 0.83em;
-}
-
-.highlight > pre::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100vw;
-    background: inherit;
-    left: calc(50% - 50vw);
-    z-index: -1;
-    margin: -.25em 0;
-    padding: .125em 0;
 }
 
 .img-flex {

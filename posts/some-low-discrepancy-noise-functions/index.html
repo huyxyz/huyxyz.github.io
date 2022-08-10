@@ -2,18 +2,20 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
-<meta property="og:title" content="graeme phillips posting">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://graemephi.github.io/">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="graeme phillips posting">
-<meta name=twitter:description content>
+<meta name=description content="This post is about an attempt to generate blue noise at a point: no state, no offline training, just arithmetic on an index. Honestly I don&rsquo;t have a good reason for wanting this but it&rsquo;s probably been at the back of my mind for like 2 years&ndash;it just seemed like it ought to be possible. It turns out to be doable in 1D and with a little lookup table we can push it to 2D.">
+<meta property="og:title" content="Some low discrepancy noise functions">
+<meta property="og:description" content="This post is about an attempt to generate blue noise at a point: no state, no offline training, just arithmetic on an index. Honestly I don&rsquo;t have a good reason for wanting this but it&rsquo;s probably been at the back of my mind for like 2 years&ndash;it just seemed like it ought to be possible. It turns out to be doable in 1D and with a little lookup table we can push it to 2D.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/"><meta property="og:image" content="https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/dither-grid-thumbnail.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-08-10T00:00:00+00:00">
+<meta property="article:modified_time" content="2022-08-10T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/dither-grid-thumbnail.png">
+<meta name=twitter:title content="Some low discrepancy noise functions">
+<meta name=twitter:description content="This post is about an attempt to generate blue noise at a point: no state, no offline training, just arithmetic on an index. Honestly I don&rsquo;t have a good reason for wanting this but it&rsquo;s probably been at the back of my mind for like 2 years&ndash;it just seemed like it ought to be possible. It turns out to be doable in 1D and with a little lookup table we can push it to 2D.">
 <meta name=twitter:site content="@graemephi">
 <meta name=generator content="Hugo 0.90.0-DEV">
-<title>graeme phillips - posting!</title>
-<link rel=alternate type=application/rss+xml href=https://graemephi.github.io/index.xml title="graeme phillips posting">
+<title>Some low discrepancy noise functions - graeme phillips posting</title>
 <link href=/css/katex.min.css rel=stylesheet type=text/css>
 <link href=/css/style.css rel=stylesheet type=text/css>
 </head>

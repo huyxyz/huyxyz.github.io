@@ -1,36 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>audio on graeme phillips posting</title>
-    <link>https://graemephi.github.io/tags/audio/</link>
-    <description>Recent content in audio on graeme phillips posting</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jun 2019 12:34:03 +0100</lastBuildDate>
-    
-	<atom:link href="https://graemephi.github.io/tags/audio/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Dumb Tricks With Phase Inversion</title>
-      <link>https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/</link>
-      <pubDate>Sun, 02 Jun 2019 12:34:03 +0100</pubDate>
-      
-      <guid>https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/</guid>
-      <description>&lt;p&gt;Phase inversion takes a signal 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 54 18&#34; width=&#34;54pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>audio on graeme phillips posting</title><link>https://graemephi.github.io/tags/audio/</link><description>Recent content in audio on graeme phillips posting</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 02 Jun 2019 12:34:03 +0100</lastBuildDate><atom:link href="https://graemephi.github.io/tags/audio/index.xml" rel="self" type="application/rss+xml"/><item><title>Dumb Tricks With Phase Inversion</title><link>https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/</link><pubDate>Sun, 02 Jun 2019 12:34:03 +0100</pubDate><guid>https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/</guid><description>&lt;p>Phase inversion takes a signal
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 54 18" width="54pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 54 18
 L 54 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#peaaa2fd3e3)&#34; d=&#34;M 2.454545 9
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#peaaa2fd3e3)" d="M 2.454545 9
 L 5.160344 7.124681
 L 6.319971 6.545069
 L 7.479599 6.207045
@@ -89,32 +70,31 @@ L 50.385827 13.28096
 L 51.158912 9.548236
 L 51.545455 7.163497
 L 51.545455 7.163497
-&#34; style=&#34;fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;peaaa2fd3e3&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;54&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- and flips it upside down 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 54 18&#34; width=&#34;54pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="peaaa2fd3e3">
+&lt;rect height="18" width="54" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+and flips it upside down
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 54 18" width="54pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 54 18
 L 54 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p6eb91deae1)&#34; d=&#34;M 2.454545 9
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p6eb91deae1)" d="M 2.454545 9
 L 5.160344 10.875319
 L 6.319971 11.454931
 L 7.479599 11.792955
@@ -173,50 +153,37 @@ L 50.385827 4.71904
 L 51.158912 8.451764
 L 51.545455 10.836503
 L 51.545455 10.836503
-&#34; style=&#34;fill:none;stroke:#33f2e6;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p6eb91deae1&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;54&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-. Most people are introduced to it as a button you push in a DAW while troubleshooting phase problems, but with some thinking it&amp;rsquo;s capable of a lot more than that. Some digging in the audio DSP literature will uncover a stray sentence or two that acknowledges this, but I get the impression that it strikes the people who already know it as too obvious to be worth mentioning. The really nice thing about it is that it all works in a DAW&amp;ndash;you don&amp;rsquo;t need to break out Max/MSP or Reaktor to experiment with it.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m pretty sure I originally got the basic idea for all this from &lt;a href=&#34;https://vladgsound.wordpress.com/&#34;&gt;vladg/sound&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;
-&lt;blockquote class=&#34;aside&#34;&gt;
-
-
-
-
-My intuition for this is fairly algebraic so I&amp;rsquo;ll be leaning on that a little, but all you need to have is an intuition for what is happening when you route audio around in a DAW. That said, I will be using notation from digital signal processing that&amp;rsquo;s too useful to give up: &lt;code&gt;x[n]&lt;/code&gt; reads as the &lt;code&gt;n&lt;/code&gt;th sample of a signal &lt;code&gt;x&lt;/code&gt;. Then &lt;code&gt;c[n] = a[n] + b[n]&lt;/code&gt; describes &lt;code&gt;c&lt;/code&gt; by telling you how to compute the &lt;code&gt;n&lt;/code&gt;th sample of &lt;code&gt;c&lt;/code&gt; in terms of signals &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. We could drop the &lt;code&gt;[n]&lt;/code&gt;, but this makes clear that we don&amp;rsquo;t need to know anything about &lt;code&gt;a&lt;/code&gt; or &lt;code&gt;b&lt;/code&gt; other than their &lt;code&gt;n&lt;/code&gt;th samples to compute the &lt;code&gt;n&lt;/code&gt;th sample of &lt;code&gt;c&lt;/code&gt;. For anything more complicated than this, I&amp;rsquo;ll use graphics.
-
-
-
-&lt;/blockquote&gt;
-
-&lt;/p&gt;
-&lt;h3 id=&#34;diffing&#34;&gt;Diffing&lt;/h3&gt;
-&lt;p&gt;Phase inversion negates a signal, &lt;code&gt;y[n] = -x[n]&lt;/code&gt;, so it turns addition (mixing) into subtraction.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#33f2e6;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p6eb91deae1">
+&lt;rect height="18" width="54" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+. Most people are introduced to it as a button you push in a DAW while troubleshooting phase problems, but with some thinking it&amp;rsquo;s capable of a lot more than that. Some digging in the audio DSP literature will uncover a stray sentence or two that acknowledges this, but I get the impression that it strikes the people who already know it as too obvious to be worth mentioning. The really nice thing about it is that it all works in a DAW&amp;ndash;you don&amp;rsquo;t need to break out Max/MSP or Reaktor to experiment with it.&lt;/p>
+&lt;p>I&amp;rsquo;m pretty sure I originally got the basic idea for all this from &lt;a href="https://vladgsound.wordpress.com/">vladg/sound&lt;/a>.&lt;/p>
+&lt;blockquote class="aside">My intuition for this is fairly algebraic so I&amp;rsquo;ll be leaning on that a little, but all you need to have is an intuition for what is happening when you route audio around in a DAW. That said, I will be using notation from digital signal processing that&amp;rsquo;s too useful to give up: &lt;code>x[n]&lt;/code> reads as the &lt;code>n&lt;/code>th sample of a signal &lt;code>x&lt;/code>. Then &lt;code>c[n] = a[n] + b[n]&lt;/code> describes &lt;code>c&lt;/code> by telling you how to compute the &lt;code>n&lt;/code>th sample of &lt;code>c&lt;/code> in terms of signals &lt;code>a&lt;/code> and &lt;code>b&lt;/code>. We could drop the &lt;code>[n]&lt;/code>, but this makes clear that we don&amp;rsquo;t need to know anything about &lt;code>a&lt;/code> or &lt;code>b&lt;/code> other than their &lt;code>n&lt;/code>th samples to compute the &lt;code>n&lt;/code>th sample of &lt;code>c&lt;/code>. For anything more complicated than this, I&amp;rsquo;ll use graphics.&lt;/blockquote>
+&lt;h3 id="diffing">Diffing&lt;/h3>
+&lt;p>Phase inversion negates a signal, &lt;code>y[n] = -x[n]&lt;/code>, so it turns addition (mixing) into subtraction.&lt;/p>
+&lt;blockquote>
+&lt;p>
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p12c0a407d9)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p12c0a407d9)" d="M 3.272727 18
 L 4.818898 17.845997
 L 5.849678 17.741868
 L 6.880458 17.855032
@@ -305,32 +272,31 @@ L 67.181102 24.914856
 L 67.696492 23.332948
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p12c0a407d9&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- + 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p12c0a407d9">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
++
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p4619e8d299)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p4619e8d299)" d="M 3.272727 18
 L 4.303508 14.234528
 L 4.818898 12.817613
 L 5.334288 11.879652
@@ -397,32 +363,31 @@ L 66.150322 17.552444
 L 67.181102 17.632444
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p4619e8d299&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- = 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p4619e8d299">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+=
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p320c124c7d)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p320c124c7d)" d="M 3.272727 18
 L 4.303508 14.156411
 L 4.818898 12.663609
 L 5.334288 11.656456
@@ -512,32 +477,31 @@ L 67.181102 24.5473
 L 67.696492 23.062357
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#e61ae6;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p320c124c7d&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- = 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#e61ae6;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p320c124c7d">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+=
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p12c0a407d9)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p12c0a407d9)" d="M 3.272727 18
 L 4.818898 17.845997
 L 5.849678 17.741868
 L 6.880458 17.855032
@@ -626,32 +590,31 @@ L 67.181102 24.914856
 L 67.696492 23.332948
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p12c0a407d9&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- - 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p12c0a407d9">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+-
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p4b9a36d3ff)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p4b9a36d3ff)" d="M 3.272727 18
 L 4.303508 21.765472
 L 4.818898 23.182387
 L 5.334288 24.120348
@@ -718,36 +681,35 @@ L 66.150322 18.447556
 L 67.181102 18.367556
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#33f2e6;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p4b9a36d3ff&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The first thing to notice about this is if we add a signal to itself, phase inverted, we get silence.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#33f2e6;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p4b9a36d3ff">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+&lt;/p>
+&lt;/blockquote>
+&lt;p>The first thing to notice about this is if we add a signal to itself, phase inverted, we get silence.&lt;/p>
+&lt;blockquote>
+&lt;p>
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p5797117576)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p5797117576)" d="M 3.272727 18
 L 4.818898 7.930427
 L 5.849678 2.95669
 L 6.365068 1.306986
@@ -828,32 +790,31 @@ L 66.665712 30.806391
 L 67.696492 24.93969
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p5797117576&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- + 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p5797117576">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
++
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#pa94d880bf0)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#pa94d880bf0)" d="M 3.272727 18
 L 4.818898 28.069573
 L 5.849678 33.04331
 L 6.365068 34.693014
@@ -934,87 +895,84 @@ L 66.665712 5.193609
 L 67.696492 11.06031
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#33f2e6;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;pa94d880bf0&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- = 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;36pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 72 36&#34; width=&#34;72pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 36
+" style="fill:none;stroke:#33f2e6;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="pa94d880bf0">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+=
+&lt;span class="svgi">&lt;svg height="36pt" version="1.1" viewBox="0 0 72 36" width="72pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 36
 L 72 36
 L 72 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p6acbd377c5)&#34; d=&#34;M 3.272727 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p6acbd377c5)" d="M 3.272727 18
 L 68.727273 18
 L 68.727273 18
-&#34; style=&#34;fill:none;stroke:#777777;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p6acbd377c5&#34;&gt;
-   &lt;rect height=&#34;36&#34; width=&#34;72&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;There is a vocals isolation trick that relies on this. That&amp;rsquo;s not what this post is about.&lt;/p&gt;
-&lt;p&gt;What we&amp;rsquo;re interested in is signals before and after applying an audio effect. Some audio plugins have this built-in; Ableton&amp;rsquo;s EQ8 allows you to listen to each equaliser band in isolation. You could always do this yourself by flipping the phase of the equalised signal and mixing it back in with the original. Doing so in a DAW can be cumbersome, so when plugins do it for you, it can be very nice if this is all you want. But there is nothing stopping you taking the difference of a whole chain of effects, and you have to do it yourself for plugins that don&amp;rsquo;t have this feature.&lt;/p&gt;
-&lt;p&gt;But there&amp;rsquo;s a consequence to this that is not obvious. We can add the difference signal to the dry signal to recreate the wet signal. Algebraically, &lt;code&gt;b[n] = a[n] + (b[n] - a[n])&lt;/code&gt;. &lt;em&gt;This&lt;/em&gt; is what this post is about. Whenever we have an effect in a signal chain, we can interpret the effect as &lt;em&gt;mixing in&lt;/em&gt; a difference signal to change the dry audio to the wet audio, and we are free to do any processing we want on the difference signal. Now, this is an interpretation, and it&amp;rsquo;s a wrong one. But we can have some fun with it.&lt;/p&gt;
-&lt;p&gt;By the way, I&amp;rsquo;m trying to keep this post DAW-agnostic but at the end I describe how I do this in Ableton Live in a self-contained way that doesn&amp;rsquo;t involve six hundred sends. So, check that out if you&amp;rsquo;re confused how to actually do this in a DAW.&lt;/p&gt;
-&lt;h3 id=&#34;drywet-mixing&#34;&gt;Dry/Wet Mixing&lt;/h3&gt;
-&lt;p&gt;The simplest thing we can do with the difference signal idea is to implement dry/wet mixing. This is less useful for single effects, which have this built in, than it is for effect chains, which don&amp;rsquo;t.&lt;/p&gt;
-&lt;p&gt;This is easy: turn the gain down on the difference signal. This will fade between from the wet to the dry signal. But if you&amp;rsquo;re willing to deal with a little algebra I think it&amp;rsquo;s worth exploring to what extent this is really dry/wet mixing, or something else. In dry/wet mixing, we mix two signals in such a way that the net gain sums to one,&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;c[n] = g*a[n] + (1 - g)*b[n]&lt;/code&gt;,&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;where &lt;code&gt;g&lt;/code&gt; fades between &lt;code&gt;a&lt;/code&gt; when &lt;code&gt;g&lt;/code&gt; is 0 (-∞ dB) and &lt;code&gt;b&lt;/code&gt; when &lt;code&gt;g&lt;/code&gt; is 1 (0 dB). By multiplying out and regathering we get&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;c[n] = b[n] + g*(a[n] - b[n])&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;so a dry/wet mix knob is directly equivalent to mixing in the difference signal. Note that &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; have swapped around; the phase of the difference signal has been inverted. In practice, you get to choose which way you want, which I&amp;rsquo;ll touch on later.&lt;/p&gt;
-&lt;p&gt;This is no big deal. Putting an effect chain on a return track and balancing it with the source track will be easiser most of the time.&lt;/p&gt;
-&lt;h3 id=&#34;filters&#34;&gt;Filters&lt;/h3&gt;
-&lt;p&gt;This is well known among DSP people. A highpass filter can be made from a lowpass filter by subtracting the filtered signal from the original: &lt;code&gt;hp[n] = x[n] - lp[n]&lt;/code&gt;. It works the other way around, too, and with bandpass filters. If you think about this for a moment this is kind of obvious but may be surprising. If a lowpass filter removes high frequencies, then whatever is left are low frequencies, and subtracting those from the original signal will get rid of those low frequencies. But our differencing operation operates on single samples from each signal&amp;ndash;independent of any samples before or after&amp;ndash;and a single sample is just a number without any frequency information. So, given a lowpass filter, there is some highpass filter for which we can know the value of &lt;code&gt;hp[n]&lt;/code&gt; knowing only the two samples &lt;code&gt;x[n]&lt;/code&gt; and &lt;code&gt;lp[n]&lt;/code&gt;. Showing why this works mathematically isn&amp;rsquo;t hard&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; but something cool is happening here and I think it would be a mistake to dismiss it as obvious.&lt;/p&gt;
-&lt;p&gt;With a little tinkering we can start making bandpass and bandstop filters the same way, and go on to shelving and bell filters. But all we&amp;rsquo;ve done so far is recreate things we can already do, and I want to get to the good stuff.&lt;/p&gt;
-&lt;h3 id=&#34;multiband-compression&#34;&gt;Multiband Compression&lt;/h3&gt;
-&lt;p&gt;The reason why you&amp;rsquo;d want to use the filters described above is that we can recover the original signal exactly by mixing them together again: &lt;code&gt;x[n] = lp[n] + hp[n]&lt;/code&gt;. We don&amp;rsquo;t have to think about how we parameterise the filters or anything because we&amp;rsquo;ve used our phase inversion trick to make one filter from the other. Now all that is left is to compress just one of those filtered signals, do the sum, and we have a multiband compressor. Building this out in a DAW can be tricky but, to be clear here, it lets you combine &lt;em&gt;any&lt;/em&gt; set of filter plugins and &lt;em&gt;any&lt;/em&gt; set of compressor plugins into a multiband compressor. That includes parametric equalisers, and doesn&amp;rsquo;t have the weird overlapping spectrums that throwing bandpass filters around everywhere does.&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;To do this, you need to remove the frequencies you want to compress, compress the difference signal, then add it back to the filtered signal. Before, we were adding the difference signal to the dry signal. Now, we&amp;rsquo;re adding the processed difference signal to the wet signal. We could have used the dry signal; we have a choice here between &lt;code&gt;a[n] + compress(b - a)[n]&lt;/code&gt; and &lt;code&gt;b[n] + compress(a - b)[n]&lt;/code&gt;. For compression, I find the latter much easier to reason about. The opposite way still works, but you&amp;rsquo;re adding in a phase-inverted copy of compressed frequencies to the dry signal. I have no intuition for that.&lt;/p&gt;
-&lt;h3 id=&#34;compressors&#34;&gt;Compressors&lt;/h3&gt;
-&lt;p&gt;The above has a degree of conceptual elegance, which we&amp;rsquo;ll now dispense with. Let&amp;rsquo;s take the signal&lt;/p&gt;
-&lt;blockquote&gt;
-
-&lt;span class=&#34;svg&#34;&gt;&lt;svg height=&#34;108pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 475.2 108&#34; width=&#34;475.2pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 108
+" style="fill:none;stroke:#777777;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p6acbd377c5">
+&lt;rect height="36" width="72" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+&lt;/p>
+&lt;/blockquote>
+&lt;p>There is a vocals isolation trick that relies on this. That&amp;rsquo;s not what this post is about.&lt;/p>
+&lt;p>What we&amp;rsquo;re interested in is signals before and after applying an audio effect. Some audio plugins have this built-in; Ableton&amp;rsquo;s EQ8 allows you to listen to each equaliser band in isolation. You could always do this yourself by flipping the phase of the equalised signal and mixing it back in with the original. Doing so in a DAW can be cumbersome, so when plugins do it for you, it can be very nice if this is all you want. But there is nothing stopping you taking the difference of a whole chain of effects, and you have to do it yourself for plugins that don&amp;rsquo;t have this feature.&lt;/p>
+&lt;p>But there&amp;rsquo;s a consequence to this that is not obvious. We can add the difference signal to the dry signal to recreate the wet signal. Algebraically, &lt;code>b[n] = a[n] + (b[n] - a[n])&lt;/code>. &lt;em>This&lt;/em> is what this post is about. Whenever we have an effect in a signal chain, we can interpret the effect as &lt;em>mixing in&lt;/em> a difference signal to change the dry audio to the wet audio, and we are free to do any processing we want on the difference signal. Now, this is an interpretation, and it&amp;rsquo;s a wrong one. But we can have some fun with it.&lt;/p>
+&lt;p>By the way, I&amp;rsquo;m trying to keep this post DAW-agnostic but at the end I describe how I do this in Ableton Live in a self-contained way that doesn&amp;rsquo;t involve six hundred sends. So, check that out if you&amp;rsquo;re confused how to actually do this in a DAW.&lt;/p>
+&lt;h3 id="drywet-mixing">Dry/Wet Mixing&lt;/h3>
+&lt;p>The simplest thing we can do with the difference signal idea is to implement dry/wet mixing. This is less useful for single effects, which have this built in, than it is for effect chains, which don&amp;rsquo;t.&lt;/p>
+&lt;p>This is easy: turn the gain down on the difference signal. This will fade between from the wet to the dry signal. But if you&amp;rsquo;re willing to deal with a little algebra I think it&amp;rsquo;s worth exploring to what extent this is really dry/wet mixing, or something else. In dry/wet mixing, we mix two signals in such a way that the net gain sums to one,&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>c[n] = g*a[n] + (1 - g)*b[n]&lt;/code>,&lt;/p>
+&lt;/blockquote>
+&lt;p>where &lt;code>g&lt;/code> fades between &lt;code>a&lt;/code> when &lt;code>g&lt;/code> is 0 (-∞ dB) and &lt;code>b&lt;/code> when &lt;code>g&lt;/code> is 1 (0 dB). By multiplying out and regathering we get&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>c[n] = b[n] + g*(a[n] - b[n])&lt;/code>&lt;/p>
+&lt;/blockquote>
+&lt;p>so a dry/wet mix knob is directly equivalent to mixing in the difference signal. Note that &lt;code>a&lt;/code> and &lt;code>b&lt;/code> have swapped around; the phase of the difference signal has been inverted. In practice, you get to choose which way you want, which I&amp;rsquo;ll touch on later.&lt;/p>
+&lt;p>This is no big deal. Putting an effect chain on a return track and balancing it with the source track will be easiser most of the time.&lt;/p>
+&lt;h3 id="filters">Filters&lt;/h3>
+&lt;p>This is well known among DSP people. A highpass filter can be made from a lowpass filter by subtracting the filtered signal from the original: &lt;code>hp[n] = x[n] - lp[n]&lt;/code>. It works the other way around, too, and with bandpass filters. If you think about this for a moment this is kind of obvious but may be surprising. If a lowpass filter removes high frequencies, then whatever is left are low frequencies, and subtracting those from the original signal will get rid of those low frequencies. But our differencing operation operates on single samples from each signal&amp;ndash;independent of any samples before or after&amp;ndash;and a single sample is just a number without any frequency information. So, given a lowpass filter, there is some highpass filter for which we can know the value of &lt;code>hp[n]&lt;/code> knowing only the two samples &lt;code>x[n]&lt;/code> and &lt;code>lp[n]&lt;/code>. Showing why this works mathematically isn&amp;rsquo;t hard&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> but something cool is happening here and I think it would be a mistake to dismiss it as obvious.&lt;/p>
+&lt;p>With a little tinkering we can start making bandpass and bandstop filters the same way, and go on to shelving and bell filters. But all we&amp;rsquo;ve done so far is recreate things we can already do, and I want to get to the good stuff.&lt;/p>
+&lt;h3 id="multiband-compression">Multiband Compression&lt;/h3>
+&lt;p>The reason why you&amp;rsquo;d want to use the filters described above is that we can recover the original signal exactly by mixing them together again: &lt;code>x[n] = lp[n] + hp[n]&lt;/code>. We don&amp;rsquo;t have to think about how we parameterise the filters or anything because we&amp;rsquo;ve used our phase inversion trick to make one filter from the other. Now all that is left is to compress just one of those filtered signals, do the sum, and we have a multiband compressor. Building this out in a DAW can be tricky but, to be clear here, it lets you combine &lt;em>any&lt;/em> set of filter plugins and &lt;em>any&lt;/em> set of compressor plugins into a multiband compressor. That includes parametric equalisers, and doesn&amp;rsquo;t have the weird overlapping spectrums that throwing bandpass filters around everywhere does.&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>&lt;/p>
+&lt;p>To do this, you need to remove the frequencies you want to compress, compress the difference signal, then add it back to the filtered signal. Before, we were adding the difference signal to the dry signal. Now, we&amp;rsquo;re adding the processed difference signal to the wet signal. We could have used the dry signal; we have a choice here between &lt;code>a[n] + compress(b - a)[n]&lt;/code> and &lt;code>b[n] + compress(a - b)[n]&lt;/code>. For compression, I find the latter much easier to reason about. The opposite way still works, but you&amp;rsquo;re adding in a phase-inverted copy of compressed frequencies to the dry signal. I have no intuition for that.&lt;/p>
+&lt;h3 id="compressors">Compressors&lt;/h3>
+&lt;p>The above has a degree of conceptual elegance, which we&amp;rsquo;ll now dispense with. Let&amp;rsquo;s take the signal&lt;/p>
+&lt;blockquote>
+&lt;span class="svg">&lt;svg height="108pt" version="1.1" viewBox="0 0 475.2 108" width="475.2pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 108
 L 475.2 108
 L 475.2 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#pc18caf8bee)&#34; d=&#34;M 21.6 54.435059
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#pc18caf8bee)" d="M 21.6 54.435059
 L 21.913498 23.977661
 L 22.226996 72.290588
 L 22.540493 76.054504
@@ -1923,36 +1881,33 @@ L 452.032511 49.550537
 L 452.346009 51.050171
 L 453.6 58.630737
 L 453.6 58.630737
-&#34; style=&#34;fill:none;stroke:#e61ae6;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;pc18caf8bee&#34;&gt;
-   &lt;rect height=&#34;108&#34; width=&#34;475.2&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-
-&lt;/blockquote&gt;
-&lt;p&gt;and use a compressor to flatten its peaks.&lt;/p&gt;
-&lt;blockquote&gt;
-
-&lt;span class=&#34;svg&#34;&gt;&lt;svg height=&#34;108pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 475.2 108&#34; width=&#34;475.2pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 108
+" style="fill:none;stroke:#e61ae6;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="pc18caf8bee">
+&lt;rect height="108" width="475.2" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+&lt;/blockquote>
+&lt;p>and use a compressor to flatten its peaks.&lt;/p>
+&lt;blockquote>
+&lt;span class="svg">&lt;svg height="108pt" version="1.1" viewBox="0 0 475.2 108" width="475.2pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 108
 L 475.2 108
 L 475.2 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p629da2a526)&#34; d=&#34;M 21.6 54.453186
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p629da2a526)" d="M 21.6 54.453186
 L 21.913498 31.101746
 L 22.226996 66.760071
 L 22.540493 68.671692
@@ -2864,37 +2819,33 @@ L 452.032511 49.553833
 L 452.346009 51.055115
 L 453.6 58.634033
 L 453.6 58.634033
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p629da2a526&#34;&gt;
-   &lt;rect height=&#34;108&#34; width=&#34;475.2&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-
-&lt;/blockquote&gt;
-&lt;p&gt;This sounds dreadful, but we can subtract it from the original signal to produce&lt;/p&gt;
-&lt;blockquote&gt;
-
-&lt;span class=&#34;svg&#34;&gt;&lt;svg height=&#34;108pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 475.2 108&#34; width=&#34;475.2pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 108
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p629da2a526">
+&lt;rect height="108" width="475.2" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+&lt;/blockquote>
+&lt;p>This sounds dreadful, but we can subtract it from the original signal to produce&lt;/p>
+&lt;blockquote>
+&lt;span class="svg">&lt;svg height="108pt" version="1.1" viewBox="0 0 475.2 108" width="475.2pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 108
 L 475.2 108
 L 475.2 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p0c8c92a352)&#34; d=&#34;M 21.6 53.980225
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p0c8c92a352)" d="M 21.6 53.980225
 L 21.913498 46.877563
 L 22.226996 59.535461
 L 22.540493 61.38446
@@ -3157,37 +3108,34 @@ L 444.508563 53.995056
 L 448.897533 54
 L 453.6 54.001648
 L 453.6 54.001648
-&#34; style=&#34;fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p0c8c92a352&#34;&gt;
-   &lt;rect height=&#34;108&#34; width=&#34;475.2&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-
-&lt;/blockquote&gt;
-&lt;p&gt;which gives the peaks, and we can do whatever we want with them. But the isolation isn&amp;rsquo;t perfect. The decaying tone causes the compressor to dampen the signal more when the tone is loud, and some of the tone ends up in the peaks signal.  What we care about is that they sum exactly to the original signal, and we can now process them independently.&lt;/p&gt;
-&lt;h2 id=&#34;saturators&#34;&gt;Saturators&lt;/h2&gt;
-&lt;p&gt;Applying a saturator to the difference signal of a saturator &lt;em&gt;reduces&lt;/em&gt; the amount of distortion. The simplest saturator is the hard-clip 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#cc0d1a;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p0c8c92a352">
+&lt;rect height="108" width="475.2" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+&lt;/blockquote>
+&lt;p>which gives the peaks, and we can do whatever we want with them. But the isolation isn&amp;rsquo;t perfect. The decaying tone causes the compressor to dampen the signal more when the tone is loud, and some of the tone ends up in the peaks signal. What we care about is that they sum exactly to the original signal, and we can now process them independently.&lt;/p>
+&lt;h2 id="saturators">Saturators&lt;/h2>
+&lt;p>Applying a saturator to the difference signal of a saturator &lt;em>reduces&lt;/em> the amount of distortion. The simplest saturator is the hard-clip
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 28.8 18" width="28.8pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 28.8 18
 L 28.8 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p7eb5527340)&#34; d=&#34;M 1.309091 11.97
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p7eb5527340)" d="M 1.309091 11.97
 L 1.724675 11.97
 L 2.14026 11.97
 L 2.555844 11.97
@@ -3251,33 +3199,31 @@ L 26.244156 6.03
 L 26.65974 6.03
 L 27.075325 6.03
 L 27.490909 6.03
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p7eb5527340&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;28.8&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-, and the difference signal of this is also a saturator, 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p7eb5527340">
+&lt;rect height="18" width="28.8" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+, and the difference signal of this is also a saturator,
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 28.8 18" width="28.8pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 28.8 18
 L 28.8 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p411deb80e6)&#34; d=&#34;M 1.309091 2.97
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p411deb80e6)" d="M 1.309091 2.97
 L 1.724675 3.255714
 L 2.14026 3.541429
 L 2.555844 3.827143
@@ -3341,33 +3287,31 @@ L 26.244156 14.172857
 L 26.65974 14.458571
 L 27.075325 14.744286
 L 27.490909 15.03
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p411deb80e6&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;28.8&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-. If we hard-clip this curve, we get 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p411deb80e6">
+&lt;rect height="18" width="28.8" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+. If we hard-clip this curve, we get
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 28.8 18" width="28.8pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 28.8 18
 L 28.8 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#pabcc87849c)&#34; d=&#34;M 1.309091 6.03
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#pabcc87849c)" d="M 1.309091 6.03
 L 1.724675 6.03
 L 2.14026 6.03
 L 2.555844 6.03
@@ -3431,33 +3375,31 @@ L 26.244156 11.97
 L 26.65974 11.97
 L 27.075325 11.97
 L 27.490909 11.97
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;pabcc87849c&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;28.8&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-, and adding this to the original signal 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="pabcc87849c">
+&lt;rect height="18" width="28.8" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+, and adding this to the original signal
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 28.8 18" width="28.8pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 28.8 18
 L 28.8 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#pecdcb50537)&#34; d=&#34;M 1.309091 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#pecdcb50537)" d="M 1.309091 18
 L 1.724675 17.714286
 L 2.14026 17.428571
 L 2.555844 17.142857
@@ -3521,33 +3463,31 @@ L 26.244156 0.857143
 L 26.65974 0.571429
 L 27.075325 0.285714
 L 27.490909 0
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;pecdcb50537&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;28.8&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
- produces the saturator curve 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="pecdcb50537">
+&lt;rect height="18" width="28.8" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+produces the saturator curve
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 28.8 18" width="28.8pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 28.8 18
 L 28.8 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#pac73bfb031)&#34; d=&#34;M 1.309091 15.03
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#pac73bfb031)" d="M 1.309091 15.03
 L 1.724675 14.744286
 L 2.14026 14.458571
 L 2.555844 14.172857
@@ -3611,38 +3551,36 @@ L 26.244156 3.827143
 L 26.65974 3.541429
 L 27.075325 3.255714
 L 27.490909 2.97
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;pac73bfb031&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;28.8&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-. This saturator doesn&amp;rsquo;t clip very quiet or very loud signal values, only those somewhere inbetween.&lt;/p&gt;
-&lt;p&gt;One of the nice things about this is that good saturators have good anti-aliasing, and so will any curves you make this way.&lt;/p&gt;
-&lt;p&gt;Less esoterically, think of saturation as adding harmonic content. Taking the difference isolates the added harmonics, and you can apply EQ to them.&lt;/p&gt;
-&lt;p&gt;Another option is to EQ before saturating, take the difference between the EQ&amp;rsquo;d and saturated signals, then add that back to the original signal. Now you have a saturator that responds differently to certain frequencies. Mixing linear and non-linear effects this way will mess with any intuition you have for them&amp;ndash;don&amp;rsquo;t think you&amp;rsquo;re being scientific when you do this.&lt;/p&gt;
-&lt;h3 id=&#34;bit-depth-reduction&#34;&gt;Bit-depth Reduction&lt;/h3&gt;
-&lt;p&gt;You can think of bit-depth reduction as an extreme saturation curve, 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="pac73bfb031">
+&lt;rect height="18" width="28.8" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+. This saturator doesn&amp;rsquo;t clip very quiet or very loud signal values, only those somewhere inbetween.&lt;/p>
+&lt;p>One of the nice things about this is that good saturators have good anti-aliasing, and so will any curves you make this way.&lt;/p>
+&lt;p>Less esoterically, think of saturation as adding harmonic content. Taking the difference isolates the added harmonics, and you can apply EQ to them.&lt;/p>
+&lt;p>Another option is to EQ before saturating, take the difference between the EQ&amp;rsquo;d and saturated signals, then add that back to the original signal. Now you have a saturator that responds differently to certain frequencies. Mixing linear and non-linear effects this way will mess with any intuition you have for them&amp;ndash;don&amp;rsquo;t think you&amp;rsquo;re being scientific when you do this.&lt;/p>
+&lt;h3 id="bit-depth-reduction">Bit-depth Reduction&lt;/h3>
+&lt;p>You can think of bit-depth reduction as an extreme saturation curve,
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 28.8 18" width="28.8pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 28.8 18
 L 28.8 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#p97dbe01af5)&#34; d=&#34;M 1.309091 18
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#p97dbe01af5)" d="M 1.309091 18
 L 1.724675 18
 L 2.14026 18
 L 2.555844 18
@@ -3706,33 +3644,31 @@ L 26.244156 2.25
 L 26.65974 2.25
 L 27.075325 2.25
 L 27.490909 0
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;p97dbe01af5&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;28.8&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-. This particular curve reduces a signal to 3 bits of dynamic range: &lt;code&gt;000&lt;/code&gt;, &lt;code&gt;001&lt;/code&gt;, &lt;code&gt;010&lt;/code&gt;, &lt;code&gt;011&lt;/code&gt;, &lt;code&gt;100&lt;/code&gt;, &lt;code&gt;101&lt;/code&gt;, &lt;code&gt;110&lt;/code&gt;, and &lt;code&gt;111&lt;/code&gt;. The entire dynamic range is mapped to these 8 values, so there are 8 steps. Its difference signal is 
-&lt;span class=&#34;svgi&#34;&gt;&lt;svg height=&#34;18pt&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 28.8 18&#34; width=&#34;28.8pt&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
-
- &lt;g id=&#34;figure_1&#34;&gt;
-  &lt;g id=&#34;patch_1&#34;&gt;
-   &lt;path d=&#34;M 0 18
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="p97dbe01af5">
+&lt;rect height="18" width="28.8" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+. This particular curve reduces a signal to 3 bits of dynamic range: &lt;code>000&lt;/code>, &lt;code>001&lt;/code>, &lt;code>010&lt;/code>, &lt;code>011&lt;/code>, &lt;code>100&lt;/code>, &lt;code>101&lt;/code>, &lt;code>110&lt;/code>, and &lt;code>111&lt;/code>. The entire dynamic range is mapped to these 8 values, so there are 8 steps. Its difference signal is
+&lt;span class="svgi">&lt;svg height="18pt" version="1.1" viewBox="0 0 28.8 18" width="28.8pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;g id="figure_1">
+&lt;g id="patch_1">
+&lt;path d="M 0 18
 L 28.8 18
 L 28.8 0
 L 0 0
 z
-&#34; style=&#34;fill:none;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g id=&#34;axes_1&#34;&gt;
-   &lt;g id=&#34;line2d_1&#34;&gt;
-    &lt;path clip-path=&#34;url(#pe010576229)&#34; d=&#34;M 1.309091 9
+" style="fill:none;"/>
+&lt;/g>
+&lt;g id="axes_1">
+&lt;g id="line2d_1">
+&lt;path clip-path="url(#pe010576229)" d="M 1.309091 9
 L 1.724675 9.285714
 L 2.14026 9.571429
 L 2.555844 9.857143
@@ -3796,46 +3732,37 @@ L 26.244156 10.392857
 L 26.65974 10.678571
 L 27.075325 10.964286
 L 27.490909 9
-&#34; style=&#34;fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;&#34;/&gt;
-   &lt;/g&gt;
-  &lt;/g&gt;
- &lt;/g&gt;
- &lt;defs&gt;
-  &lt;clipPath id=&#34;pe010576229&#34;&gt;
-   &lt;rect height=&#34;18&#34; width=&#34;28.8&#34; x=&#34;0&#34; y=&#34;0&#34;/&gt;
-  &lt;/clipPath&gt;
- &lt;/defs&gt;
-&lt;/svg&gt;
-&lt;/span&gt;
-
-.&lt;/p&gt;
-&lt;p&gt;There are two ways to interpret it. One is that it&amp;rsquo;s wraparound distortion (see the &lt;a href=&#34;https://docs.cycling74.com/max7/maxobject/pong~&#34;&gt;pong~&lt;/a&gt; object in Max/MSP). Another is that it&amp;rsquo;s giving you back the bits the other curve throws away. Either way, I like experimenting with this. I&amp;rsquo;m one of those unfortunate people who likes the sound of bit crushing, and you can use this to get a lot more variation (and dynamic range) out of it.&lt;/p&gt;
-&lt;h3 id=&#34;doing-it&#34;&gt;Doing It&lt;/h3&gt;
-&lt;p&gt;The best way of actually doing this took me a while to figure out. I use Ableton Live, which has audio effect racks. They are almost enough to do everything we want to do, but if you&amp;rsquo;re using a DAW that instead relies on complex routing, it might be too unwieldly to use in practice. I&amp;rsquo;ve settled on using two audio effect racks, one for the &lt;code&gt;a[n] + (b[n] - a[n])&lt;/code&gt; case, and another for the &lt;code&gt;b[n] + (a[n] - b[n])&lt;/code&gt; case, which I call positive and negative.&lt;/p&gt;
-&lt;p&gt;The positive case is easiest, because &lt;code&gt;a[n]&lt;/code&gt; is the original dry signal, and we can duplicate it as needed by adding more chains to an audio effect rack.&lt;/p&gt;
-
-&lt;div style=&#34;display: flex; justify-content: center;&#34; /&gt;
-    &lt;img src=&#34;https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/AER1.png&#34;/&gt;
-&lt;/div&gt;
-
-
-&lt;p&gt;The outer A chain is empty. The inner -A chain contains a utility effect with both channels inverted. Then, you place any effect you want the difference signal of in the B chain, and can process the difference signal after the inner audio effect rack. The utility effects gain knob acts as a dry/wet mix; the effect is 100% wet at 0 dB.&lt;/p&gt;
-&lt;p&gt;The negative case is more tricky. Implementing &lt;code&gt;b[n] + (a[n] - b[n])&lt;/code&gt; requires routing that effect racks can&amp;rsquo;t do. You could produce &lt;code&gt;b&lt;/code&gt; twice, but having to update the every parameter twice (or being limited to the effect rack&amp;rsquo;s macro controls) is a huge pain. Instead, I use the side chain from some of Ableton&amp;rsquo;s effects, which can capture audio before or after any effect rack. &lt;a href=&#34;https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/AER2.png&#34;&gt;See here for an image&lt;/a&gt;, where I&amp;rsquo;ve used the compressor&amp;rsquo;s side chain, set to audition, to tap audio from the B chain before inverting it. To use this, we put an effect in the B chain, and everything after the inner effect rack is the difference signal. Collapse the side chain rack and never think about it. This effect&amp;rsquo;s final utility gain is 100% dry at 0 dB (if the difference signal is left unmodified).&lt;/p&gt;
-&lt;p&gt;One thing is missing from these: it&amp;rsquo;s really nice to be able to apply effects to the original signal after we&amp;rsquo;ve used it to produce a difference signal but before we&amp;rsquo;ve summed them back together. To do that, put another empty effect rack in the A (positive) or B (negative) chain, and use the side chain audition to tap that rack pre-fx. Now, anything before the emtpy rack gets differenced, and anything after only gets sent to the output.&lt;/p&gt;
-&lt;p&gt;I think you should figure out recreating this for yourself, or even find your own solution, because keeping track of what signal you&amp;rsquo;re producing and what needs to be inverted at what point in the signal chain is informative. My early attempts weren&amp;rsquo;t pretty. But if you&amp;rsquo;d rather just use mine, here&amp;rsquo;s &lt;a href=&#34;https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/Difference%20(Positive).adg&#34;&gt;Difference (Positive)&lt;/a&gt; and &lt;a href=&#34;https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/Difference%20(Negative).adg&#34;&gt;Difference (Negative)&lt;/a&gt; (Live 10. I don&amp;rsquo;t know if these things are backwards compatible, but I don&amp;rsquo;t use any features that are 10 only).&lt;/p&gt;
-&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;The process for finding the frequency content of a signal, the fourier transform, &lt;a href=&#34;https://math.stackexchange.com/questions/140788/how-is-the-fourier-transform-linear&#34;&gt;is linear&lt;/a&gt;.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;One thing I&amp;rsquo;m taking for granted here is that plugins correctly report the delay they introduce to the signal chain. It&amp;rsquo;s hard to write a compressor people want to use without knowing exactly how much delay you&amp;rsquo;re inserting into the signal chain, but equalisers and filters can introduce frequency-specific delays. I couldn&amp;rsquo;t say how common or uncommon it is for plugins to handle this properly. All this still works, but the difference signal contains information you don&amp;rsquo;t want it to contain. Then again, if a filter is messing with the phase of your audio, it&amp;rsquo;s already screwing up your audio! You don&amp;rsquo;t care about theoretical correctness if you&amp;rsquo;re still using that filter.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/section&gt;
-</description>
-    </item>
-    
-  </channel>
-</rss>
+" style="fill:none;stroke:#1a0dcc;stroke-linecap:square;stroke-width:1.5;"/>
+&lt;/g>
+&lt;/g>
+&lt;/g>
+&lt;defs>
+&lt;clipPath id="pe010576229">
+&lt;rect height="18" width="28.8" x="0" y="0"/>
+&lt;/clipPath>
+&lt;/defs>
+&lt;/svg>
+&lt;/span>
+.&lt;/p>
+&lt;p>There are two ways to interpret it. One is that it&amp;rsquo;s wraparound distortion (see the &lt;a href="https://docs.cycling74.com/max7/maxobject/pong~">pong~&lt;/a> object in Max/MSP). Another is that it&amp;rsquo;s giving you back the bits the other curve throws away. Either way, I like experimenting with this. I&amp;rsquo;m one of those unfortunate people who likes the sound of bit crushing, and you can use this to get a lot more variation (and dynamic range) out of it.&lt;/p>
+&lt;h3 id="doing-it">Doing It&lt;/h3>
+&lt;p>The best way of actually doing this took me a while to figure out. I use Ableton Live, which has audio effect racks. They are almost enough to do everything we want to do, but if you&amp;rsquo;re using a DAW that instead relies on complex routing, it might be too unwieldly to use in practice. I&amp;rsquo;ve settled on using two audio effect racks, one for the &lt;code>a[n] + (b[n] - a[n])&lt;/code> case, and another for the &lt;code>b[n] + (a[n] - b[n])&lt;/code> case, which I call positive and negative.&lt;/p>
+&lt;p>The positive case is easiest, because &lt;code>a[n]&lt;/code> is the original dry signal, and we can duplicate it as needed by adding more chains to an audio effect rack.&lt;/p>
+&lt;div style="display: flex; justify-content: center;">
+&lt;img src="https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/AER1.png" width="796" height="192" />
+&lt;/div>
+&lt;p>The outer A chain is empty. The inner -A chain contains a utility effect with both channels inverted. Then, you place any effect you want the difference signal of in the B chain, and can process the difference signal after the inner audio effect rack. The utility effects gain knob acts as a dry/wet mix; the effect is 100% wet at 0 dB.&lt;/p>
+&lt;p>The negative case is more tricky. Implementing &lt;code>b[n] + (a[n] - b[n])&lt;/code> requires routing that effect racks can&amp;rsquo;t do. You could produce &lt;code>b&lt;/code> twice, but having to update the every parameter twice (or being limited to the effect rack&amp;rsquo;s macro controls) is a huge pain. Instead, I use the side chain from some of Ableton&amp;rsquo;s effects, which can capture audio before or after any effect rack. &lt;a href="https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/AER2.png">See here for an image&lt;/a>, where I&amp;rsquo;ve used the compressor&amp;rsquo;s side chain, set to audition, to tap audio from the B chain before inverting it. To use this, we put an effect in the B chain, and everything after the inner effect rack is the difference signal. Collapse the side chain rack and never think about it. This effect&amp;rsquo;s final utility gain is 100% dry at 0 dB (if the difference signal is left unmodified).&lt;/p>
+&lt;p>One thing is missing from these: it&amp;rsquo;s really nice to be able to apply effects to the original signal after we&amp;rsquo;ve used it to produce a difference signal but before we&amp;rsquo;ve summed them back together. To do that, put another empty effect rack in the A (positive) or B (negative) chain, and use the side chain audition to tap that rack pre-fx. Now, anything before the emtpy rack gets differenced, and anything after only gets sent to the output.&lt;/p>
+&lt;p>I think you should figure out recreating this for yourself, or even find your own solution, because keeping track of what signal you&amp;rsquo;re producing and what needs to be inverted at what point in the signal chain is informative. My early attempts weren&amp;rsquo;t pretty. But if you&amp;rsquo;d rather just use mine, here&amp;rsquo;s &lt;a href="https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/Difference%20(Positive).adg">Difference (Positive)&lt;/a> and &lt;a href="https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/Difference%20(Negative).adg">Difference (Negative)&lt;/a> (Live 10. I don&amp;rsquo;t know if these things are backwards compatible, but I don&amp;rsquo;t use any features that are 10 only).&lt;/p>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>The process for finding the frequency content of a signal, the fourier transform, &lt;a href="https://math.stackexchange.com/questions/140788/how-is-the-fourier-transform-linear">is linear&lt;/a>.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2" role="doc-endnote">
+&lt;p>One thing I&amp;rsquo;m taking for granted here is that plugins correctly report the delay they introduce to the signal chain. It&amp;rsquo;s hard to write a compressor people want to use without knowing exactly how much delay you&amp;rsquo;re inserting into the signal chain, but equalisers and filters can introduce frequency-specific delays. I couldn&amp;rsquo;t say how common or uncommon it is for plugins to handle this properly. All this still works, but the difference signal contains information you don&amp;rsquo;t want it to contain. Then again, if a filter is messing with the phase of your audio, it&amp;rsquo;s already screwing up your audio! You don&amp;rsquo;t care about theoretical correctness if you&amp;rsquo;re still using that filter.&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item></channel></rss>

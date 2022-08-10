@@ -1,201 +1,160 @@
-<!DOCTYPE html>
-
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="generator" content="Hugo 0.90.0-DEV" />
-        <title>i made a twitter bot: deep sky object - graeme phillips posting</title>
-        <link href="/css/katex.min.css" rel="stylesheet" type="text/css">
-
-        <link href="/css/style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div class="content">
-            
-                <header class="page-header">
-    <h1 class="page-title"><a href="/">φ</a></h1>
-    <span class="name">graeme phillips posting</span>
-    <span class="links">
-    <a href="https://github.com/graemephi" class="github icon" title="Github">
-        <svg  height="30px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-
-    </a>
-    <a href="https://twitter.com/graemephi" class="twitter icon" title="Twitter">
-        <svg height="30px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="A couple months ago I set @tiny_dso running. It&rsquo;s a twitter art bot, which I guess is less of an exciting thing nowadays, but it&rsquo;s an idea I&rsquo;ve wanted to do for at least a few years now: turn @tiny_star_field's tweets into computer generated imitations of astrophotography.
+tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work it&rsquo;s way backwards through tiny_star_field's old tweets. I wanted to …">
+<meta property="og:title" content="i made a twitter bot: deep sky object">
+<meta property="og:description" content="A couple months ago I set @tiny_dso running. It&rsquo;s a twitter art bot, which I guess is less of an exciting thing nowadays, but it&rsquo;s an idea I&rsquo;ve wanted to do for at least a few years now: turn @tiny_star_field's tweets into computer generated imitations of astrophotography.
+tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work it&rsquo;s way backwards through tiny_star_field's old tweets. I wanted to make it something you could follow for a long time and still be surprised by, rather than something you&rsquo;d scroll down once and see everything it&rsquo;s capable of.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://graemephi.github.io/posts/deep-sky-object/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-05-20T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-05-20T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="i made a twitter bot: deep sky object">
+<meta name=twitter:description content="A couple months ago I set @tiny_dso running. It&rsquo;s a twitter art bot, which I guess is less of an exciting thing nowadays, but it&rsquo;s an idea I&rsquo;ve wanted to do for at least a few years now: turn @tiny_star_field's tweets into computer generated imitations of astrophotography.
+tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work it&rsquo;s way backwards through tiny_star_field's old tweets. I wanted to make it something you could follow for a long time and still be surprised by, rather than something you&rsquo;d scroll down once and see everything it&rsquo;s capable of.">
+<meta name=twitter:site content="@graemephi">
+<meta name=generator content="Hugo 0.90.0-DEV">
+<title>i made a twitter bot: deep sky object - graeme phillips posting</title>
+<link href=/css/katex.min.css rel=stylesheet type=text/css>
+<link href=/css/style.css rel=stylesheet type=text/css>
+</head>
+<body>
+<div class=content>
+<header class=page-header>
+<span style=display:inline-flex;flex-direction:column>
+<h1 class=page-title><a href=/>φ</a></h1>
+<span>graeme phillips posting</span>
 </span>
-
+<span class=links>
+<a href=https://github.com/graemephi class="github icon" title=Github><svg height="30" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M256 32C132.3 32 32 134.8 32 261.7c0 101.5 64.2 187.5 153.2 217.9 11.2 2.1 15.3-5 15.3-11.1.0-5.5-.2-19.9-.3-39.1-62.3 13.9-75.5-30.8-75.5-30.8-10.2-26.5-24.9-33.6-24.9-33.6-20.3-14.3 1.5-14 1.5-14 22.5 1.6 34.3 23.7 34.3 23.7 20 35.1 52.4 25 65.2 19.1 2-14.8 7.8-25 14.2-30.7-49.7-5.8-102-25.5-102-113.5.0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8.0.0 18.8-6.2 61.6 23.5 17.9-5.1 37-7.6 56.1-7.7 19 .1 38.2 2.6 56.1 7.7 42.8-29.7 61.5-23.5 61.5-23.5 12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6.0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5.0 30.7-.3 55.5-.3 63 0 6.1 4 13.3 15.4 11C415.9 449.1 480 363.1 480 261.7 480 134.8 379.7 32 256 32z"/></svg>
+</a>
+<a href=https://twitter.com/graemephi class="twitter icon" title=Twitter><svg height="30" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173.0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678c-1.676.976-3.646 1.526-5.616 1.568C19.775 43.256 19 43.341 19 43.405c0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.673 5.657-5 6.978-8.221.713-1.716 1.425-4.851 1.425-6.354.0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267.0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932C39.766 21.902 38.131 21.944 37.167 22.283zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd"/></svg>
+</a>
+</span>
 </header>
-
-            
-            
-    <div class="post-header">
-    <h1 class="post-title"><a href="/posts/deep-sky-object/">i made a twitter bot: deep sky object</a></h1>
-    <span class="date">May 20, 2020</span>
+<div class=post-header>
+<h1 class=post-title><a href=/posts/deep-sky-object/>i made a twitter bot: deep sky object</a></h1>
 </div>
-
-    <ul class="tags post-tags">
-        [
-        
-        
-            
-            
-                <li><a href="/tags/procedural-generation/">procedural generation</a>,</li>
-            
-        
-            
-            
-                <li><a href="/tags/graphics/">graphics</a></li>
-            
-        
-        ]
-    </ul>
-
-<div class="post">
-<p>A couple months ago I set <a href="https://twitter.com/tiny_dso">@tiny_dso</a> running. It&rsquo;s a twitter art bot, which I guess is less of an exciting thing nowadays, but it&rsquo;s an idea I&rsquo;ve wanted to do for at least a few years now: turn <a href="https://twitter.com/tiny_star_field">@tiny_star_field</a>'s tweets into computer generated imitations of astrophotography.</p>
+<div class=text-align-right>
+<span class=date>May 20, 2020</span>
+<br>
+<ul class="tags post-tags">
+[
+<li><a href=/tags/procedural-generation/>procedural generation</a>,</li>
+<li><a href=/tags/graphics/>graphics</a></li>
+]
+</ul>
+</div>
+<div class=post>
+<p>A couple months ago I set <a href=https://twitter.com/tiny_dso>@tiny_dso</a> running. It&rsquo;s a twitter art bot, which I guess is less of an exciting thing nowadays, but it&rsquo;s an idea I&rsquo;ve wanted to do for at least a few years now: turn <a href=https://twitter.com/tiny_star_field>@tiny_star_field</a>'s tweets into computer generated imitations of astrophotography.</p>
 <p>tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work it&rsquo;s way backwards through tiny_star_field's old tweets. I wanted to make it something you could follow for a long time and still be surprised by, rather than something you&rsquo;d scroll down once and see everything it&rsquo;s capable of. We&rsquo;ll see if I succeeded there; I&rsquo;m not sure. It&rsquo;s hard to tweak the parameters for that kind of thing, especially since when I&rsquo;m working on it I generate hundreds of images, which skews my perception of what&rsquo;s happening too much or not enough.</p>
 <p>It&rsquo;s been running for a while, so I can let it speak for itself:</p>
-<div class="img-flex">
-
-
-<img src="/posts/deep-sky-object/EXeYst0XkAITLkB.png" />
-
-
-
-<img src="/posts/deep-sky-object/ERjccJlXYAEwypn.png" />
-
-
-
-<img src="/posts/deep-sky-object/ESHpGWuW4AEAUlJ.png" />
-
-
-
-<img src="/posts/deep-sky-object/ETJqBfgWoAIiTNk.png" />
-
-
-
-<img src="/posts/deep-sky-object/EShIIcjXQAEHntm.png" />
-
-
-
-<img src="/posts/deep-sky-object/EW0CH6_WkAQaKBw.png" />
-
-
+<div class=img-flex>
+<img src=/posts/deep-sky-object/EXeYst0XkAITLkB.png width=480 height=480>
+<img src=/posts/deep-sky-object/ERjccJlXYAEwypn.png width=480 height=480>
+<img src=/posts/deep-sky-object/ESHpGWuW4AEAUlJ.png width=480 height=480>
+<img src=/posts/deep-sky-object/ETJqBfgWoAIiTNk.png width=480 height=480>
+<img src=/posts/deep-sky-object/EShIIcjXQAEHntm.png width=480 height=480>
+<img src=/posts/deep-sky-object/EW0CH6_WkAQaKBw.png width=480 height=480>
 </div>
-
 <p>I don&rsquo;t have it in me to write more about it with a coherent structure so I&rsquo;m just going to dump some notes on the implementation here. I wrote most of the code a couple years ago, returned to it a couple times, and really just decided to get it running on twitter recently. There&rsquo;s probably some stuff I intended to do that I&rsquo;ve completely forgotten about, so this is mostly technical details I can read out of the code.</p>
 <hr>
-<p>The bot part that talks to twitter is just javascript that lives on <a href="https://tiny-dso.glitch.me/">glitch</a>. The <a href="https://github.com/graemephi/starfield">image generator</a> is an executable that spits pngs out of standard out.</p>
+<p>The bot part that talks to twitter is just javascript that lives on <a href=https://tiny-dso.glitch.me/>glitch</a>. The <a href=https://github.com/graemephi/starfield>image generator</a> is an executable that spits pngs out of standard out.</p>
 <hr>
-<p>It&rsquo;s written in ion, the language Per Vognsen created for <a href="https://github.com/pervognsen/bitwise">bitwise</a>. It&rsquo;s basically C99, except you can omit type names sometimes, you use <code>.</code> instead of <code>-&gt;</code>, and there is some notion of modules. Oh, and it has out of order declarations. I think when I started writing this the language was fully 2 weeks old. It looked pretty cool and I didn&rsquo;t want to use any libraries in this project<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, so it fit my needs fine. As new and unfinished compilers go, it was pretty reliable. But it didn&rsquo;t receive a whole lot of development past that. Coming back to the code to get the images onto twitter I found it had some bugs to work around, mostly to do with getting it to generate code that would compile on linux<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<p>It&rsquo;s written in ion, the language Per Vognsen created for <a href=https://github.com/pervognsen/bitwise>bitwise</a>. It&rsquo;s basically C99, except you can omit type names sometimes, you use <code>.</code> instead of <code>-></code>, and there is some notion of modules. Oh, and it has out of order declarations. I think when I started writing this the language was fully 2 weeks old. It looked pretty cool and I didn&rsquo;t want to use any libraries in this project<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>, so it fit my needs fine. As new and unfinished compilers go, it was pretty reliable. But it didn&rsquo;t receive a whole lot of development past that. Coming back to the code to get the images onto twitter I found it had some bugs to work around, mostly to do with getting it to generate code that would compile on linux<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>.</p>
 <p>I found tweaking the image generation intolerable if it took more than half a second or so, so I spent some time optimising it. That means multi-threading, vector instructions, and a lot of profiling. This wasn&rsquo;t a problem with ion, because it can generate C code, and will take your word for it if you tell it some function or type exists. Also, it uses the C preprocessor to get line information to debuggers (and profilers). All in all, very nice. Good language.</p>
 <hr>
-<p>I learned early on that the easiest way to render a passable looking star was to place a single white pixel on an otherwise blank texture and just use <a href="https://graemephi.github.io/posts/calculating-lod/">mipmaps</a> to filter it for rendering. Rotating a shrunken, very bright, pixel gets you endless variation on how the stars look.</p>
-<p>Pixel values fall in the range <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> and, if you think on it, stars really ought to be much brighter than that. So this method works best if you just let your values overflow then adaptively crunch the image back down with post-processing. Most astrophotography has gone through reams of processing, anyway.</p>
+<p>I learned early on that the easiest way to render a passable looking star was to place a single white pixel on an otherwise blank texture and just use <a href=https://graemephi.github.io/posts/calculating-lod/>mipmaps</a> to filter it for rendering. Rotating a shrunken, very bright, pixel gets you endless variation on how the stars look.</p>
+<p>Pixel values fall in the range <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:1em;vertical-align:-.25em></span><span class=mopen>[</span><span class=mord>0</span><span class=mpunct>,</span><span class=mspace style=margin-right:.16666666666666666em></span><span class=mord>1</span><span class=mclose>]</span></span></span></span> and, if you think on it, stars really ought to be much brighter than that. So this method works best if you just let your values overflow then adaptively crunch the image back down with post-processing. Most astrophotography has gone through reams of processing, anyway.</p>
 <hr>
 <p>All the &ldquo;pixel shader&rdquo;-like work is done using a pair of functions, <code>pixel_iter_begin</code> and <code>pixel_iter_next</code>. Rather than explaining what they do, here&rsquo;s the code for drawing a texture:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">draw_tex</span>(dest: Image<span style="color:#f92672">*</span>, target: Rect, tex: Tex<span style="color:#f92672">*</span>) {
-    lod :<span style="color:#f92672">=</span> compute_lod_level(dest.size, target.size, tex.size);
-    <span style="color:#66d9ef">for</span> (it :<span style="color:#f92672">=</span> pixel_iter_begin(dest, target); pixel_iter_next(<span style="color:#f92672">&amp;</span>it)) {
-        rgba :<span style="color:#f92672">=</span> tex_lookup_lod(tex, it.npos, lod);
-        <span style="color:#f92672">*</span>it.pixel <span style="color:#f92672">=</span> color_blend(<span style="color:#f92672">*</span>it.pixel, rgba);
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>func <span style=color:#a6e22e>draw_tex</span>(dest: Image<span style=color:#f92672>*</span>, target: Rect, tex: Tex<span style=color:#f92672>*</span>) {
+    lod :<span style=color:#f92672>=</span> compute_lod_level(dest.size, target.size, tex.size);
+    <span style=color:#66d9ef>for</span> (it :<span style=color:#f92672>=</span> pixel_iter_begin(dest, target); pixel_iter_next(<span style=color:#f92672>&amp;</span>it)) {
+        rgba :<span style=color:#f92672>=</span> tex_lookup_lod(tex, it.npos, lod);
+        <span style=color:#f92672>*</span>it.pixel <span style=color:#f92672>=</span> color_blend(<span style=color:#f92672>*</span>it.pixel, rgba);
     }
 }
-</code></pre></div><p>This would work in C, but it&rsquo;d look like <code>for (PixelIter it = ...; pixel_iter_next(&amp;it);) {} </code>. Note that trailing semicolon&ndash;<code>next</code> gets called before, not after, every iteration. Now, this way of iterating over pixels is very general and so pretty slow. It just makes doing pixel-by-pixel stuff extremely low friction to write code for. I think most programmers would reach for function pointers or generics to separate the pixel shading code from the iteration, but it&rsquo;s not necessary, and a pain to actually use. It turns out that the iterator code was not performance critical at all, so the overhead didn&rsquo;t matter much, and the implementation is also very naive.</p>
+</code></pre></div><p>This would work in C, but it&rsquo;d look like <code>for (PixelIter it = ...; pixel_iter_next(&it);) {} </code>. Note that trailing semicolon&ndash;<code>next</code> gets called before, not after, every iteration. Now, this way of iterating over pixels is very general and so pretty slow. It just makes doing pixel-by-pixel stuff extremely low friction to write code for. I think most programmers would reach for function pointers or generics to separate the pixel shading code from the iteration, but it&rsquo;s not necessary, and a pain to actually use. It turns out that the iterator code was not performance critical at all, so the overhead didn&rsquo;t matter much, and the implementation is also very naive.</p>
 <p>The pixel iterator also takes care of multi-threading. Here&rsquo;s the definition of the <code>Image</code> struct:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> Image {
-    pixels: Color<span style="color:#f92672">*</span>;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>struct</span> Image {
+    pixels: Color<span style=color:#f92672>*</span>;
     size: int2;
     wr: WritableRegion;
-    stride: <span style="color:#66d9ef">int</span>;
-    offset: <span style="color:#66d9ef">int</span>;
+    stride: <span style=color:#66d9ef>int</span>;
+    offset: <span style=color:#66d9ef>int</span>;
 }
 </code></pre></div><p>The <code>WritableRegion</code> allows the pixel iterator to clip the pixels being iterated over to the block the thread is responsible for rendering. The code that actually uses the pixel iterator doesn&rsquo;t have to think about blocks or threads at all. It&rsquo;s nice!</p>
 <p>The drawback is that if you want to draw into a side buffer before compositing into a destination buffer, then you end up allocating the full <code>size</code> and only use a block in the middle somewhere. Avoiding that is what <code>stride</code> and <code>offset</code> are for. Usually, you&rsquo;d sample an individual pixel like this:</p>
-<pre tabindex="0"><code>sample := img.pixels[pos.x + pos.y*img.x];
+<pre tabindex=0><code>sample := img.pixels[pos.x + pos.y*img.x];
 </code></pre><p>Instead, I do this:</p>
-<pre tabindex="0"><code>sample := img.pixels[pos.x + pos.y*img.stride - img.offset];
-</code></pre><p>This way, you can sample an image by talking about coordinates in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">[0, 1]^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> while the image only has storage allocated for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo separator="true">,</mo><mfrac><mn>4</mn><mn>8</mn></mfrac><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">[\frac{3}{8}, \frac{4}{8}]^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mopen">[</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> (for example), and all it takes is an extra subtraction.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<pre tabindex=0><code>sample := img.pixels[pos.x + pos.y*img.stride - img.offset];
+</code></pre><p>This way, you can sample an image by talking about coordinates in <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">[0, 1]^2</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:1.064108em;vertical-align:-.25em></span><span class=mopen>[</span><span class=mord>0</span><span class=mpunct>,</span><span class=mspace style=margin-right:.16666666666666666em></span><span class=mord>1</span><span class=mclose><span class=mclose>]</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.8141079999999999em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> while the image only has storage allocated for <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo separator="true">,</mo><mfrac><mn>4</mn><mn>8</mn></mfrac><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">[\frac{3}{8}, \frac{4}{8}]^2</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:1.190108em;vertical-align:-.345em></span><span class=mopen>[</span><span class=mord><span class="mopen nulldelimiter"></span><span class=mfrac><span class="vlist-t vlist-t2"><span class=vlist-r><span class=vlist style=height:.845108em><span style=top:-2.6550000000000002em><span class=pstrut style=height:3em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style=top:-3.23em><span class=pstrut style=height:3em></span><span class=frac-line style=border-bottom-width:.04em></span></span><span style=top:-3.394em><span class=pstrut style=height:3em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span><span class=vlist-s>​</span></span><span class=vlist-r><span class=vlist style=height:.345em><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class=mpunct>,</span><span class=mspace style=margin-right:.16666666666666666em></span><span class=mord><span class="mopen nulldelimiter"></span><span class=mfrac><span class="vlist-t vlist-t2"><span class=vlist-r><span class=vlist style=height:.845108em><span style=top:-2.6550000000000002em><span class=pstrut style=height:3em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style=top:-3.23em><span class=pstrut style=height:3em></span><span class=frac-line style=border-bottom-width:.04em></span></span><span style=top:-3.394em><span class=pstrut style=height:3em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span><span class=vlist-s>​</span></span><span class=vlist-r><span class=vlist style=height:.345em><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class=mclose><span class=mclose>]</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.8141079999999999em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> (for example), and all it takes is an extra subtraction.<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup></p>
 <hr>
-<p>All the star colours are chosen by linearly interpolating between RGB values obtained by colour-picking from <a href="https://en.wikipedia.org/wiki/Stellar_classification#/media/File:TernaryColorTmap.PNG">wikipedia</a>. They&rsquo;re pretty close so I never had to do anything fancy involving splines or colour space transformations.</p>
+<p>All the star colours are chosen by linearly interpolating between RGB values obtained by colour-picking from <a href=https://en.wikipedia.org/wiki/Stellar_classification#/media/File:TernaryColorTmap.PNG>wikipedia</a>. They&rsquo;re pretty close so I never had to do anything fancy involving splines or colour space transformations.</p>
 <hr>
-<p>Most of the look comes from blurring the entire image and layering the blurred and unblurred parts together in arbitrary ways. Think blend modes in image editors. It turns out it&rsquo;s pretty easy to write a <a href="https://fgiesen.wordpress.com/2012/07/30/fast-blurs-1/">fast</a> <a href="https://fgiesen.wordpress.com/2012/08/01/fast-blurs-2/">blur</a>, and you don&rsquo;t even have to think about how to vectorise it because everything is in 4 independent colour components already.</p>
+<p>Most of the look comes from blurring the entire image and layering the blurred and unblurred parts together in arbitrary ways. Think blend modes in image editors. It turns out it&rsquo;s pretty easy to write a <a href=https://fgiesen.wordpress.com/2012/07/30/fast-blurs-1/>fast</a> <a href=https://fgiesen.wordpress.com/2012/08/01/fast-blurs-2/>blur</a>, and you don&rsquo;t even have to think about how to vectorise it because everything is in 4 independent colour components already.</p>
 <p>The diffraction spikes are blurs, too. I think a lot of people jump to the fourier transform to do diffraction spikes but I couldn&rsquo;t be bothered with that&ndash;just take a box filter with a hole cut out of the middle and repeat it a few times. Same principle as using iterated box filters to approximate a gaussian blur, as in the links above, but non-separable this time, so you need to do vertical and horizontal passes both on the original image (i.e., not in series).</p>
-<p>If you look at actual diffraction spikes you can see different colours get diffracted more or less. I think this is probably the same principle as <a href="https://en.wikipedia.org/wiki/Surface_wave#Ground_wave">ground waves</a>, where lower frequency radio waves diffract around the surface of the Earth more than higher frequency waves. So, I use different sizes of filter on each colour component; larger for larger wavelengths, I think, but you can only do so much in RGB.</p>
+<p>If you look at actual diffraction spikes you can see different colours get diffracted more or less. I think this is probably the same principle as <a href=https://en.wikipedia.org/wiki/Surface_wave#Ground_wave>ground waves</a>, where lower frequency radio waves diffract around the surface of the Earth more than higher frequency waves. So, I use different sizes of filter on each colour component; larger for larger wavelengths, I think, but you can only do so much in RGB.</p>
 <p>Honestly, though, the diffraction code is kind of terrible. Every time I think about it I think of a better way to implement it. For example, I haven&rsquo;t vectorised it, because the memory accesses are different for each colour component. But to get diffractions at an angle I do a song and dance where I rotate a copy of the entire image to another buffer&ndash;this would be a good time to rearrange the data into colour planes to make it vectorisable: multiple rows of a plane at once. I could even reuse the other blur code at that point, and implement the convolution <code>(A - B)x</code> as <code>Ax - Bx</code>. But I don&rsquo;t! And I never will, now.</p>
 <hr>
-<p>The nebulas are a hot mess of noise functions, mostly <a href="https://thebookofshaders.com/12/">cellular noise</a> with a healthy dose of <a href="https://iquilezles.org/www/articles/warp/warp.htm">domain warping</a>. It all happens on a 2D plane; I didn&rsquo;t want to think about 3D volumetric anything for this project.</p>
-<p>I do the cellular noise in fixed-point arithmetic. This was out of curiosity more anything else; the implementation comes pretty naturally from wanting to use a <a href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=madd&amp;techs=SSE2&amp;expand=3505">certain SSE2 instruction</a>. I&rsquo;d like to write more about it, but not in this post.</p>
+<p>The nebulas are a hot mess of noise functions, mostly <a href=https://thebookofshaders.com/12/>cellular noise</a> with a healthy dose of <a href=https://iquilezles.org/www/articles/warp/warp.htm>domain warping</a>. It all happens on a 2D plane; I didn&rsquo;t want to think about 3D volumetric anything for this project.</p>
+<p>I do the cellular noise in fixed-point arithmetic. This was out of curiosity more anything else; the implementation comes pretty naturally from wanting to use a <a href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=madd&techs=SSE2&expand=3505">certain SSE2 instruction</a>. I&rsquo;d like to write more about it, but not in this post.</p>
 <hr>
-<p>By the way, <a href="https://glitch.com/">glitch</a> is pretty cool. It spins up an instance of who-knows-what for you and clang is just sitting there, waiting to compile whatever you want. A very old version of clang. That doesn&rsquo;t have the intrinsics I use. Well, it has gcc, too.</p>
-<p>If you&rsquo;ve scrolled all the way down here and only now have decided you want the bot&rsquo;s twitter, <a href="https://twitter.com/tiny_dso">here you go</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>By the way, <a href=https://glitch.com/>glitch</a> is pretty cool. It spins up an instance of who-knows-what for you and clang is just sitting there, waiting to compile whatever you want. A very old version of clang. That doesn&rsquo;t have the intrinsics I use. Well, it has gcc, too.</p>
+<p>If you&rsquo;ve scrolled all the way down here and only now have decided you want the bot&rsquo;s twitter, <a href=https://twitter.com/tiny_dso>here you go</a>.</p>
+<section class=footnotes role=doc-endnotes>
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>Except <a href="https://github.com/nothings/stb">stb_image_write.h</a> for the pngs. On Windows, I don&rsquo;t write pngs, but render to a buffer managed by SDL. So they both have one dependency, but it&rsquo;s a different dependency, I guess.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id=fn:1 role=doc-endnote>
+<p>Except <a href=https://github.com/nothings/stb>stb_image_write.h</a> for the pngs. On Windows, I don&rsquo;t write pngs, but render to a buffer managed by SDL. So they both have one dependency, but it&rsquo;s a different dependency, I guess.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p>I think most, if not all, of those bugs have been fixed in <a href="https://github.com/uucidl/bitwise">this fork</a>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id=fn:2 role=doc-endnote>
+<p>I think most, if not all, of those bugs have been fixed in <a href=https://github.com/uucidl/bitwise>this fork</a>.&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
-<p>You could also shunt the <code>pixels</code> pointer off into no-mans-land and pray  you get all the new weird boundary conditions right.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id=fn:3 role=doc-endnote>
+<p>You could also shunt the <code>pixels</code> pointer off into no-mans-land and pray you get all the new weird boundary conditions right.&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
-
 </div>
-
-
-
-            
-    
-
-
-
-    <h3>More Posts</h3>
-    <ol reversed>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/difference-decay/">Difference Decay</a> (2021-12-29)
+<blockquote class=aside>
+<noscript><p style=margin:auto>There might be <a href=https://utteranc.es>utteranc.es</a> comments here when javascript is on.</p></noscript>
+<script src=https://utteranc.es/client.js repo=graemephi/graemephi.github.io issue-term=og:title theme=github-light crossorigin=anonymous async></script>
+</blockquote>
+<h2>More Posts</h2>
+<ol reversed>
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/>Some low discrepancy noise functions</a> (2022-08-10)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/stb_ds-string-interning/">stb_ds: string interning</a> (2020-08-27)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/difference-decay/>Difference Decay</a> (2021-12-29)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/server-side-katex-with-hugo-part-2/">Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/stb_ds-string-interning/>stb_ds: string interning</a> (2020-08-27)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/calculating-lod/">Calculating LOD</a> (2019-12-31)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/server-side-katex-with-hugo-part-2/>Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/static-katex-with-hugo/">Server-side KaTeX With Hugo</a> (2019-12-15)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/calculating-lod/>Calculating LOD</a> (2019-12-31)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/triangle-dft/">The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/static-katex-with-hugo/>Server-side KaTeX With Hugo</a> (2019-12-15)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/">Dumb Tricks With Phase Inversion</a> (2019-06-02)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/triangle-dft/>The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
 </li>
-
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/>Dumb Tricks With Phase Inversion</a> (2019-06-02)
+</li>
 </ol>
-
-
-
-
-
-            <div class="rss-link">
-                <a href="/index.xml" title="RSS">rss</a>
-            </div>
-        </div>
-    </body>
+<div class=rss-link>
+<a href=/index.xml title=RSS>rss</a>
+</div>
+</div>
+</body>
 </html>

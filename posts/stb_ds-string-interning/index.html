@@ -1,153 +1,133 @@
-<!DOCTYPE html>
-
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="generator" content="Hugo 0.90.0-DEV" />
-        <title>stb_ds: string interning - graeme phillips posting</title>
-        <link href="/css/katex.min.css" rel="stylesheet" type="text/css">
-
-        <link href="/css/style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div class="content">
-            
-                <header class="page-header">
-    <h1 class="page-title"><a href="/">φ</a></h1>
-    <span class="name">graeme phillips posting</span>
-    <span class="links">
-    <a href="https://github.com/graemephi" class="github icon" title="Github">
-        <svg  height="30px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
-</svg>
-
-    </a>
-    <a href="https://twitter.com/graemephi" class="twitter icon" title="Twitter">
-        <svg height="30px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="stb_ds is a generic container library for C. It was probably from seeing the same technique in bitwise, but I&rsquo;ve had it at the back of my mind for a while now that one of the good use cases for stb_ds was easy string interning. But it&rsquo;s not mentioned anywhere, not even in the gentle introduction! Well, the pieces are there, but how to put them together is a little subtle.">
+<meta property="og:title" content="stb_ds: string interning">
+<meta property="og:description" content="stb_ds is a generic container library for C. It was probably from seeing the same technique in bitwise, but I&rsquo;ve had it at the back of my mind for a while now that one of the good use cases for stb_ds was easy string interning. But it&rsquo;s not mentioned anywhere, not even in the gentle introduction! Well, the pieces are there, but how to put them together is a little subtle.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://graemephi.github.io/posts/stb_ds-string-interning/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-08-27T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-08-27T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="stb_ds: string interning">
+<meta name=twitter:description content="stb_ds is a generic container library for C. It was probably from seeing the same technique in bitwise, but I&rsquo;ve had it at the back of my mind for a while now that one of the good use cases for stb_ds was easy string interning. But it&rsquo;s not mentioned anywhere, not even in the gentle introduction! Well, the pieces are there, but how to put them together is a little subtle.">
+<meta name=twitter:site content="@graemephi">
+<meta name=generator content="Hugo 0.90.0-DEV">
+<title>stb_ds: string interning - graeme phillips posting</title>
+<link href=/css/katex.min.css rel=stylesheet type=text/css>
+<link href=/css/style.css rel=stylesheet type=text/css>
+</head>
+<body>
+<div class=content>
+<header class=page-header>
+<span style=display:inline-flex;flex-direction:column>
+<h1 class=page-title><a href=/>φ</a></h1>
+<span>graeme phillips posting</span>
 </span>
-
+<span class=links>
+<a href=https://github.com/graemephi class="github icon" title=Github><svg height="30" style="enable-background:new 0 0 512 512" viewBox="0 0 512 512" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M256 32C132.3 32 32 134.8 32 261.7c0 101.5 64.2 187.5 153.2 217.9 11.2 2.1 15.3-5 15.3-11.1.0-5.5-.2-19.9-.3-39.1-62.3 13.9-75.5-30.8-75.5-30.8-10.2-26.5-24.9-33.6-24.9-33.6-20.3-14.3 1.5-14 1.5-14 22.5 1.6 34.3 23.7 34.3 23.7 20 35.1 52.4 25 65.2 19.1 2-14.8 7.8-25 14.2-30.7-49.7-5.8-102-25.5-102-113.5.0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8.0.0 18.8-6.2 61.6 23.5 17.9-5.1 37-7.6 56.1-7.7 19 .1 38.2 2.6 56.1 7.7 42.8-29.7 61.5-23.5 61.5-23.5 12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6.0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5.0 30.7-.3 55.5-.3 63 0 6.1 4 13.3 15.4 11C415.9 449.1 480 363.1 480 261.7 480 134.8 379.7 32 256 32z"/></svg>
+</a>
+<a href=https://twitter.com/graemephi class="twitter icon" title=Twitter><svg height="30" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173.0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678c-1.676.976-3.646 1.526-5.616 1.568C19.775 43.256 19 43.341 19 43.405c0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.673 5.657-5 6.978-8.221.713-1.716 1.425-4.851 1.425-6.354.0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267.0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932C39.766 21.902 38.131 21.944 37.167 22.283zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd"/></svg>
+</a>
+</span>
 </header>
-
-            
-            
-    <div class="post-header">
-    <h1 class="post-title"><a href="/posts/stb_ds-string-interning/">stb_ds: string interning</a></h1>
-    <span class="date">August 27, 2020</span>
+<div class=post-header>
+<h1 class=post-title><a href=/posts/stb_ds-string-interning/>stb_ds: string interning</a></h1>
 </div>
-
-    <ul class="tags post-tags">
-        [
-        
-        
-            
-            
-                <li><a href="/tags/programming/">programming</a></li>
-            
-        
-        ]
-    </ul>
-
-<div class="post">
-<p><a href="https://github.com/nothings/stb">stb_ds</a> is a generic container library for C. It was probably from seeing the same technique in <a href="https://github.com/pervognsen/bitwise">bitwise</a>, but I&rsquo;ve had it at the back of my mind for a while now that one of the good use cases for stb_ds was easy string interning. But it&rsquo;s not mentioned anywhere, not even in the <a href="http://nothings.org/stb_ds">gentle introduction</a>! Well, the pieces are there, but how to put them together is a little subtle.</p>
-<p>By the way, string interning is when you keep at most one copy of a given string in memory, and use immutable references to such copies as your string value type. In return, you get <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> string equality and you use less memory.</p>
+<div class=text-align-right>
+<span class=date>August 27, 2020</span>
+<br>
+<ul class="tags post-tags">
+[
+<li><a href=/tags/programming/>programming</a></li>
+]
+</ul>
+</div>
+<div class=post>
+<p><a href=https://github.com/nothings/stb>stb_ds</a> is a generic container library for C. It was probably from seeing the same technique in <a href=https://github.com/pervognsen/bitwise>bitwise</a>, but I&rsquo;ve had it at the back of my mind for a while now that one of the good use cases for stb_ds was easy string interning. But it&rsquo;s not mentioned anywhere, not even in the <a href=http://nothings.org/stb_ds>gentle introduction</a>! Well, the pieces are there, but how to put them together is a little subtle.</p>
+<p>By the way, string interning is when you keep at most one copy of a given string in memory, and use immutable references to such copies as your string value type. In return, you get <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:1em;vertical-align:-.25em></span><span class="mord mathdefault" style=margin-right:.02778em>O</span><span class=mopen>(</span><span class=mord>1</span><span class=mclose>)</span></span></span></span> string equality and you use less memory.</p>
 <p>You can do string interning with a single stb_ds hash table, and that&rsquo;s it. I&rsquo;m pretty sure stb_ds is designed to ensure that this is possible&ndash;you can&rsquo;t do it with most hash tables. Several features fitting together just right makes it work.</p>
-<p>First, table entries are stored contiguously in memory, and their order is stable, even when the hash table is resized. This is in constrast to other hash table implementations that store their data in sparse arrays. This isn&rsquo;t just an implementation detail but a documented part of the API. For more on why you might want a hash table that does this, check out <a href="https://morepypy.blogspot.com/2015/01/faster-more-memory-efficient-and-more.html">this blog post from PyPy</a>.</p>
+<p>First, table entries are stored contiguously in memory, and their order is stable, even when the hash table is resized. This is in constrast to other hash table implementations that store their data in sparse arrays. This isn&rsquo;t just an implementation detail but a documented part of the API. For more on why you might want a hash table that does this, check out <a href=https://morepypy.blogspot.com/2015/01/faster-more-memory-efficient-and-more.html>this blog post from PyPy</a>.</p>
 <p>Second, stb_ds can hash strings for use as key types. Once you have string interning, you only need primitive type keys for your hash tables. But if you don&rsquo;t have proper string keys before you have interning, you need to figure out what you&rsquo;re doing. We don&rsquo;t have to worry about it.</p>
 <p>Third, string hash tables can be configured to store their keys in a memory arena managed by the hash table. This means we won&rsquo;t have to manage the intern pool memory at all. The arena gives us stable pointers and minimises the number of calls to the underlying allocator.</p>
 <p>And lastly, although stb_ds&rsquo;s hash table maps keys to values, it&rsquo;s possible to use it without specifying values at all. (And you don&rsquo;t waste any space doing this.)</p>
 <p>All of these are useful in their own right! But check this out:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> { <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>key; } Intern;
-<span style="color:#66d9ef">static</span> Intern <span style="color:#f92672">*</span>interns <span style="color:#f92672">=</span> NULL;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>struct</span> { <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>key; } Intern;
+<span style=color:#66d9ef>static</span> Intern <span style=color:#f92672>*</span>interns <span style=color:#f92672>=</span> NULL;
 
-ptrdiff_t <span style="color:#a6e22e">intern</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str)
+ptrdiff_t <span style=color:#a6e22e>intern</span>(<span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>str)
 {
-    <span style="color:#66d9ef">if</span> (str <span style="color:#f92672">==</span> NULL) {
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style=color:#66d9ef>if</span> (str <span style=color:#f92672>==</span> NULL) {
+        <span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
     }
-    <span style="color:#66d9ef">if</span> (interns <span style="color:#f92672">==</span> NULL) {
+    <span style=color:#66d9ef>if</span> (interns <span style=color:#f92672>==</span> NULL) {
         sh_new_arena(interns);
     }
-    ptrdiff_t result <span style="color:#f92672">=</span> shgeti(interns, str);
-    <span style="color:#66d9ef">if</span> (result <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-        shputs(interns, (Intern) { .key <span style="color:#f92672">=</span> str });
-        result <span style="color:#f92672">=</span> shlen(interns) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    ptrdiff_t result <span style=color:#f92672>=</span> shgeti(interns, str);
+    <span style=color:#66d9ef>if</span> (result <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
+        shputs(interns, (Intern) { .key <span style=color:#f92672>=</span> str });
+        result <span style=color:#f92672>=</span> shlen(interns) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
     }
-    <span style="color:#66d9ef">return</span> result;
+    <span style=color:#66d9ef>return</span> result;
 }
 
-<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">from_intern</span>(ptrdiff_t handle)
+<span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>from_intern</span>(ptrdiff_t handle)
 {
-    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>result <span style="color:#f92672">=</span> NULL;
-    <span style="color:#66d9ef">if</span> (handle <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> handle <span style="color:#f92672">&lt;</span> shlen(interns)) {
-        result <span style="color:#f92672">=</span> interns[handle].key;
+    <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>result <span style=color:#f92672>=</span> NULL;
+    <span style=color:#66d9ef>if</span> (handle <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> handle <span style=color:#f92672>&lt;</span> shlen(interns)) {
+        result <span style=color:#f92672>=</span> interns[handle].key;
     }
-    <span style="color:#66d9ef">return</span> result;
+    <span style=color:#66d9ef>return</span> result;
 }
 </code></pre></div><p>Table entries go into the hash table as just a key, without a corresponding value. To get a value to use as a handle, we use their index in the table&rsquo;s key storage. When we want to turn a handle back into <code>char *</code>, we index off the <code>interns</code> pointer.</p>
-<p>Since pointers to the interned strings are stable, you might want to hand out those pointers directly, instead of handles. On the other hand, pointer-sized handles are somewhat big on 64-bit systems, so there you might want to use a smaller handle type. On 64-bit, the above code is a bit worst-of-both-worlds, but I wanted to show the idea as cleanly as possible.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>Since pointers to the interned strings are stable, you might want to hand out those pointers directly, instead of handles. On the other hand, pointer-sized handles are somewhat big on 64-bit systems, so there you might want to use a smaller handle type. On 64-bit, the above code is a bit worst-of-both-worlds, but I wanted to show the idea as cleanly as possible.<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p>
 <p>If you&rsquo;re using a version of stb_ds older than v0.65 the above code won&rsquo;t work, as using <code>shputs</code> will store the pointer in <code>key</code> directly instead of a pointer to the copy it will allocate from the arena. Prior to v0.65, you had to manage the intern pool&rsquo;s memory directly. That&rsquo;s okay, because stb_ds exposes its internal memory arena functionality as part of the API. The idea is the same, just slightly less convenient.</p>
 <p>Also, I first call <code>shgeti</code> there, but you really ought to be able to get away with just calling <code>shputs</code> and calling it a day. If you use pointers instead of handles this works, because <code>shputs</code> returns the inserted key. But I&rsquo;m not convinced you can rely on that for future versions.</p>
-<p>And&hellip; I think that&rsquo;s it.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>And&mldr; I think that&rsquo;s it.</p>
+<section class=footnotes role=doc-endnotes>
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>If they&rsquo;re smaller than pointer-sized, handles can overflow. I figure if I post code it should be working code that can be copy-pasted somewhere without blowing up some indeterminate time in the future. Although, I&rsquo;m not keen on the behaviour it has with null strings and invalid handles. I feel like both of those indicate that bad things are happening, and returning null pointers is just adding fuel to the fire.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id=fn:1 role=doc-endnote>
+<p>If they&rsquo;re smaller than pointer-sized, handles can overflow. I figure if I post code it should be working code that can be copy-pasted somewhere without blowing up some indeterminate time in the future. Although, I&rsquo;m not keen on the behaviour it has with null strings and invalid handles. I feel like both of those indicate that bad things are happening, and returning null pointers is just adding fuel to the fire.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
-
 </div>
-
-
-
-            
-    
-
-
-
-    <h3>More Posts</h3>
-    <ol reversed>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/difference-decay/">Difference Decay</a> (2021-12-29)
+<blockquote class=aside>
+<noscript><p style=margin:auto>There might be <a href=https://utteranc.es>utteranc.es</a> comments here when javascript is on.</p></noscript>
+<script src=https://utteranc.es/client.js repo=graemephi/graemephi.github.io issue-term=og:title theme=github-light crossorigin=anonymous async></script>
+</blockquote>
+<h2>More Posts</h2>
+<ol reversed>
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/>Some low discrepancy noise functions</a> (2022-08-10)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/deep-sky-object/">i made a twitter bot: deep sky object</a> (2020-05-20)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/difference-decay/>Difference Decay</a> (2021-12-29)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/server-side-katex-with-hugo-part-2/">Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/deep-sky-object/>i made a twitter bot: deep sky object</a> (2020-05-20)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/calculating-lod/">Calculating LOD</a> (2019-12-31)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/server-side-katex-with-hugo-part-2/>Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/static-katex-with-hugo/">Server-side KaTeX With Hugo</a> (2019-12-15)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/calculating-lod/>Calculating LOD</a> (2019-12-31)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/triangle-dft/">The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/static-katex-with-hugo/>Server-side KaTeX With Hugo</a> (2019-12-15)
 </li>
-
-<li style="list-style: none">
-    <a href="https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/">Dumb Tricks With Phase Inversion</a> (2019-06-02)
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/triangle-dft/>The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
 </li>
-
+<li style=list-style:none>
+<a href=https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/>Dumb Tricks With Phase Inversion</a> (2019-06-02)
+</li>
 </ol>
-
-
-
-
-
-            <div class="rss-link">
-                <a href="/index.xml" title="RSS">rss</a>
-            </div>
-        </div>
-    </body>
+<div class=rss-link>
+<a href=/index.xml title=RSS>rss</a>
+</div>
+</div>
+</body>
 </html>
