@@ -6,11 +6,11 @@
 <meta property="og:title" content="Some low discrepancy noise functions">
 <meta property="og:description" content="This post is about an attempt to generate blue noise at a point: no state, no offline training, just arithmetic on an index. Honestly I don&rsquo;t have a good reason for wanting this but it&rsquo;s probably been at the back of my mind for like 2 years&ndash;it just seemed like it ought to be possible. It turns out to be doable in 1D and with a little lookup table we can push it to 2D.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/"><meta property="og:image" content="https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/dither-grid-thumbnail.png"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://listenbody.site/posts/some-low-discrepancy-noise-functions/"><meta property="og:image" content="https://listenbody.site/posts/some-low-discrepancy-noise-functions/dither-grid-thumbnail.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-08-10T00:00:00+00:00">
 <meta property="article:modified_time" content="2022-08-10T00:00:00+00:00">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/dither-grid-thumbnail.png">
+<meta name=twitter:image content="https://listenbody.site/posts/some-low-discrepancy-noise-functions/dither-grid-thumbnail.png">
 <meta name=twitter:title content="Some low discrepancy noise functions">
 <meta name=twitter:description content="This post is about an attempt to generate blue noise at a point: no state, no offline training, just arithmetic on an index. Honestly I don&rsquo;t have a good reason for wanting this but it&rsquo;s probably been at the back of my mind for like 2 years&ndash;it just seemed like it ought to be possible. It turns out to be doable in 1D and with a little lookup table we can push it to 2D.">
 <meta name=twitter:site content="@graemephi">
@@ -79,10 +79,10 @@
 
 <span style=color:#75715e>// usage
 </span><span style=color:#75715e></span><span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>uint32_t</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>512</span>; i<span style=color:#f92672>++</span>) {
-	<span style=color:#75715e>// convert the noise to a float in [0, 1)
-</span><span style=color:#75715e></span>	<span style=color:#66d9ef>float</span> x <span style=color:#f92672>=</span> (<span style=color:#66d9ef>float</span>)noise(i) <span style=color:#f92672>*</span> <span style=color:#ae81ff>1.0</span>p<span style=color:#f92672>-</span><span style=color:#ae81ff>32f</span>;
-	
-	<span style=color:#75715e>// ... do something with x
+    <span style=color:#75715e>// convert the noise to a float in [0, 1)
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>float</span> x <span style=color:#f92672>=</span> (<span style=color:#66d9ef>float</span>)noise(i) <span style=color:#f92672>*</span> <span style=color:#ae81ff>1.0</span>p<span style=color:#f92672>-</span><span style=color:#ae81ff>32f</span>;
+    
+    <span style=color:#75715e>// ... do something with x
 </span><span style=color:#75715e></span>}
 </code></pre></div><p>We&rsquo;re going to follow <a href=https://jcgt.org/published/0009/04/01/>Practical Hash-based Owen Scrambling</a> by taking a sequence we already know is low discrepancy and shuffling it. We&rsquo;ll need the <em>nested uniform scramble</em> from that paper, too. As for the sequence, the golden ratio sequence is <a href=https://marc-b-reynolds.github.io/distribution/2020/01/24/Rank1Pre.html>very easy to compute</a> in the form I want, so we&rsquo;ll use that.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> np
@@ -90,7 +90,7 @@ i32 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>int32
 u32 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>uint32 
 
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>golden_ratio_sequence</span>(i: u32) <span style=color:#f92672>-&gt;</span> u32:
-	<span style=color:#66d9ef>return</span> u32(i) <span style=color:#f92672>*</span> u32(<span style=color:#ae81ff>2654435769</span>) <span style=color:#75715e># 0.618... in 0.32 fixed point</span>
+    <span style=color:#66d9ef>return</span> u32(i) <span style=color:#f92672>*</span> u32(<span style=color:#ae81ff>2654435769</span>) <span style=color:#75715e># 0.618... in 0.32 fixed point</span>
 
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>reverse_bits32</span>(x: u32) <span style=color:#f92672>-&gt;</span> u32:
     x <span style=color:#f92672>=</span> u32(x)
@@ -110,7 +110,7 @@ u32 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>uint3
     <span style=color:#66d9ef>return</span> reverse_bits32(x)
 
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>okay_blue_noise</span>(i: u32) <span style=color:#f92672>-&gt;</span> u32:
-	<span style=color:#66d9ef>return</span> golden_ratio_sequence(nested_uniform_scramble(i))
+    <span style=color:#66d9ef>return</span> golden_ratio_sequence(nested_uniform_scramble(i))
 </code></pre></div><p>You can get a reordering of any sequence you like by hashing the index with <em>nested uniforms scramble</em>.</p>
 <p>It&rsquo;s a bit intimidating, but the important thing about it is each hex constant there is an even number. In binary, multiplying by an even number sends bits to the left, so each xor permutes bits in a low-to-high direction. The authors wanted to permute bits high-to-low, and so reverse the bit order before and after. So, it&rsquo;s a hash, where the action of each bit on the hash is constrained to only permute bits below itself. And the <a href=http://burtleburtle.net/bob/rand/talksmall.html>xors are invertible</a>, meaning each input maps to a unique output.</p>
 <p>A consequence of this that can give you some intuition for what it does is that the high bit of the input is always preserved. So, as a counter hash, the first <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:.664392em;vertical-align:0></span><span class=mord><span class=mord>2</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.664392em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span> inputs map to <code>u32</code>s below <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:.664392em;vertical-align:0></span><span class=mord><span class=mord>2</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.664392em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>. And since you know that holds for <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2^{n+1}</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:.8141079999999999em;vertical-align:0></span><span class=mord><span class=mord>2</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.8141079999999999em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span> as well, you also get that <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mn>2</mn><mi>n</mi></msup><mo separator="true">,</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[2^n, 2^{n+1}]</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:1.064108em;vertical-align:-.25em></span><span class=mopen>[</span><span class=mord><span class=mord>2</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.664392em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class=mpunct>,</span><span class=mspace style=margin-right:.16666666666666666em></span><span class=mord><span class=mord>2</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.8141079999999999em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class=mclose>]</span></span></span></span> maps to <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mn>2</mn><mi>n</mi></msup><mo separator="true">,</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[2^n, 2^{n+1}]</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:1.064108em;vertical-align:-.25em></span><span class=mopen>[</span><span class=mord><span class=mord>2</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.664392em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class=mpunct>,</span><span class=mspace style=margin-right:.16666666666666666em></span><span class=mord><span class=mord>2</span><span class=msupsub><span class=vlist-t><span class=vlist-r><span class=vlist style=height:.8141079999999999em><span style=top:-3.063em;margin-right:.05em><span class=pstrut style=height:2.7em></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class=mclose>]</span></span></span></span>. In these intervals, the shuffled sequence produces the same values as the underlying sequence, just in a different order. This doesn&rsquo;t fully explain its behaviour as a hash but it&rsquo;s enough for us to get going with.</p>
@@ -206,7 +206,7 @@ xorshift_star(i <span style=color:#f92672>+</span> <span style=color:#ae81ff>64<
     <span style=color:#66d9ef>return</span> result
 </code></pre></div><p>Every bit we include in this scramble increases discrepancy&ndash;bits can permute bits to their left, here. We can claw back a bit by treating the high bit of <code>cap_mask</code> as a kind of sign bit and flipping all this logic to work backwards when its set.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>masked_xorshift</span>(x: u32, bits: u32 <span style=color:#f92672>=</span> <span style=color:#ae81ff>8</span>) <span style=color:#f92672>-&gt;</span> u32:
-	<span style=color:#75715e># all ones if (x &amp; 0x100) == 0x100, all zeros otherwise</span>
+    <span style=color:#75715e># all ones if (x &amp; 0x100) == 0x100, all zeros otherwise</span>
     sign_mask <span style=color:#f92672>=</span> i32(x <span style=color:#f92672>&lt;&lt;</span> u32(<span style=color:#ae81ff>31</span> <span style=color:#f92672>-</span> bits)) <span style=color:#f92672>&gt;&gt;</span> i32(<span style=color:#ae81ff>31</span>)
     sign_mask <span style=color:#f92672>=</span> u32(sign_mask)
     cap_mask <span style=color:#f92672>=</span> u32((<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> bits) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)
@@ -371,7 +371,7 @@ lookit(noise)
     <span style=color:#66d9ef>return</span> u32(x)
 
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>z_order</span>(x: u32, y: u32) <span style=color:#f92672>-&gt;</span> u32:
-	<span style=color:#66d9ef>return</span> left_shift_2(x) <span style=color:#f92672>+</span> (left_shift_2(y) <span style=color:#f92672>&lt;&lt;</span> u32(<span style=color:#ae81ff>1</span>))
+    <span style=color:#66d9ef>return</span> left_shift_2(x) <span style=color:#f92672>+</span> (left_shift_2(y) <span style=color:#f92672>&lt;&lt;</span> u32(<span style=color:#ae81ff>1</span>))
 
 tile_bits <span style=color:#f92672>=</span> <span style=color:#ae81ff>6</span>
 tile_n <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> tile_bits
@@ -450,7 +450,7 @@ lookit(s <span style=color:#f92672>/</span> s<span style=color:#f92672>.</span>m
     <span style=color:#66d9ef>return</span> r
 
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>red_2d</span>(x: u32, y: u32) <span style=color:#f92672>-&gt;</span> u32:
-	<span style=color:#75715e># note the right shift--this isn&#39;t z-order</span>
+    <span style=color:#75715e># note the right shift--this isn&#39;t z-order</span>
     i <span style=color:#f92672>=</span> left_shift_2(x) <span style=color:#f92672>+</span> (left_shift_2(y) <span style=color:#f92672>&gt;&gt;</span> u32(<span style=color:#ae81ff>1</span>))
     <span style=color:#66d9ef>return</span> red(i)
 
@@ -497,33 +497,33 @@ That&rsquo;s shifting in time. If you do the <em>exact same thing</em> in the ti
 </div>
 <blockquote class=aside>
 <noscript><p style=margin:auto>There might be <a href=https://utteranc.es>utteranc.es</a> comments here when javascript is on.</p></noscript>
-<script src=https://utteranc.es/client.js repo=graemephi/graemephi.github.io issue-term=og:title theme=github-light crossorigin=anonymous async></script>
+<script src=https://utteranc.es/client.js repo=graemephi/listenbody.site issue-term=og:title theme=github-light crossorigin=anonymous async></script>
 </blockquote>
 <h2>More Posts</h2>
 <ol reversed>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/difference-decay/>Difference Decay</a> (2021-12-29)
+<a href=https://listenbody.site/posts/difference-decay/>Difference Decay</a> (2021-12-29)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/stb_ds-string-interning/>stb_ds: string interning</a> (2020-08-27)
+<a href=https://listenbody.site/posts/stb_ds-string-interning/>stb_ds: string interning</a> (2020-08-27)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/deep-sky-object/>i made a twitter bot: deep sky object</a> (2020-05-20)
+<a href=https://listenbody.site/posts/deep-sky-object/>i made a twitter bot: deep sky object</a> (2020-05-20)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/server-side-katex-with-hugo-part-2/>Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
+<a href=https://listenbody.site/posts/server-side-katex-with-hugo-part-2/>Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/calculating-lod/>Calculating LOD</a> (2019-12-31)
+<a href=https://listenbody.site/posts/calculating-lod/>Calculating LOD</a> (2019-12-31)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/static-katex-with-hugo/>Server-side KaTeX With Hugo</a> (2019-12-15)
+<a href=https://listenbody.site/posts/static-katex-with-hugo/>Server-side KaTeX With Hugo</a> (2019-12-15)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/triangle-dft/>The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
+<a href=https://listenbody.site/posts/triangle-dft/>The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/>Dumb Tricks With Phase Inversion</a> (2019-06-02)
+<a href=https://listenbody.site/posts/dumb-tricks-with-phase-inversion/>Dumb Tricks With Phase Inversion</a> (2019-06-02)
 </li>
 </ol>
 <div class=rss-link>
