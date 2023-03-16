@@ -8,7 +8,7 @@ tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work
 <meta property="og:description" content="A couple months ago I set @tiny_dso running. It&rsquo;s a twitter art bot, which I guess is less of an exciting thing nowadays, but it&rsquo;s an idea I&rsquo;ve wanted to do for at least a few years now: turn @tiny_star_field's tweets into computer generated imitations of astrophotography.
 tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work it&rsquo;s way backwards through tiny_star_field's old tweets. I wanted to make it something you could follow for a long time and still be surprised by, rather than something you&rsquo;d scroll down once and see everything it&rsquo;s capable of.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://graemephi.github.io/posts/deep-sky-object/"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://listenbody.site/posts/deep-sky-object/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2020-05-20T00:00:00+00:00">
 <meta property="article:modified_time" content="2020-05-20T00:00:00+00:00">
 <meta name=twitter:card content="summary">
@@ -67,7 +67,7 @@ tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work
 <p>It&rsquo;s written in ion, the language Per Vognsen created for <a href=https://github.com/pervognsen/bitwise>bitwise</a>. It&rsquo;s basically C99, except you can omit type names sometimes, you use <code>.</code> instead of <code>-></code>, and there is some notion of modules. Oh, and it has out of order declarations. I think when I started writing this the language was fully 2 weeks old. It looked pretty cool and I didn&rsquo;t want to use any libraries in this project<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>, so it fit my needs fine. As new and unfinished compilers go, it was pretty reliable. But it didn&rsquo;t receive a whole lot of development past that. Coming back to the code to get the images onto twitter I found it had some bugs to work around, mostly to do with getting it to generate code that would compile on linux<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>.</p>
 <p>I found tweaking the image generation intolerable if it took more than half a second or so, so I spent some time optimising it. That means multi-threading, vector instructions, and a lot of profiling. This wasn&rsquo;t a problem with ion, because it can generate C code, and will take your word for it if you tell it some function or type exists. Also, it uses the C preprocessor to get line information to debuggers (and profilers). All in all, very nice. Good language.</p>
 <hr>
-<p>I learned early on that the easiest way to render a passable looking star was to place a single white pixel on an otherwise blank texture and just use <a href=https://graemephi.github.io/posts/calculating-lod/>mipmaps</a> to filter it for rendering. Rotating a shrunken, very bright, pixel gets you endless variation on how the stars look.</p>
+<p>I learned early on that the easiest way to render a passable looking star was to place a single white pixel on an otherwise blank texture and just use <a href=https://listenbody.site/posts/calculating-lod/>mipmaps</a> to filter it for rendering. Rotating a shrunken, very bright, pixel gets you endless variation on how the stars look.</p>
 <p>Pixel values fall in the range <span class=katex><span class=katex-mathml><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math></span><span class=katex-html aria-hidden=true><span class=base><span class=strut style=height:1em;vertical-align:-.25em></span><span class=mopen>[</span><span class=mord>0</span><span class=mpunct>,</span><span class=mspace style=margin-right:.16666666666666666em></span><span class=mord>1</span><span class=mclose>]</span></span></span></span> and, if you think on it, stars really ought to be much brighter than that. So this method works best if you just let your values overflow then adaptively crunch the image back down with post-processing. Most astrophotography has gone through reams of processing, anyway.</p>
 <hr>
 <p>All the &ldquo;pixel shader&rdquo;-like work is done using a pair of functions, <code>pixel_iter_begin</code> and <code>pixel_iter_next</code>. Rather than explaining what they do, here&rsquo;s the code for drawing a texture:</p>
@@ -123,33 +123,33 @@ tiny_star_field is getting a bit intermittent nowadays, so I set the bot to work
 </div>
 <blockquote class=aside>
 <noscript><p style=margin:auto>There might be <a href=https://utteranc.es>utteranc.es</a> comments here when javascript is on.</p></noscript>
-<script src=https://utteranc.es/client.js repo=graemephi/graemephi.github.io issue-term=og:title theme=github-light crossorigin=anonymous async></script>
+<script src=https://utteranc.es/client.js repo=graemephi/listenbody.site issue-term=og:title theme=github-light crossorigin=anonymous async></script>
 </blockquote>
 <h2>More Posts</h2>
 <ol reversed>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/some-low-discrepancy-noise-functions/>Some low discrepancy noise functions</a> (2022-08-10)
+<a href=https://listenbody.site/posts/some-low-discrepancy-noise-functions/>Some low discrepancy noise functions</a> (2022-08-10)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/difference-decay/>Difference Decay</a> (2021-12-29)
+<a href=https://listenbody.site/posts/difference-decay/>Difference Decay</a> (2021-12-29)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/stb_ds-string-interning/>stb_ds: string interning</a> (2020-08-27)
+<a href=https://listenbody.site/posts/stb_ds-string-interning/>stb_ds: string interning</a> (2020-08-27)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/server-side-katex-with-hugo-part-2/>Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
+<a href=https://listenbody.site/posts/server-side-katex-with-hugo-part-2/>Server-side KaTeX With Hugo: Part 2</a> (2020-01-19)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/calculating-lod/>Calculating LOD</a> (2019-12-31)
+<a href=https://listenbody.site/posts/calculating-lod/>Calculating LOD</a> (2019-12-31)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/static-katex-with-hugo/>Server-side KaTeX With Hugo</a> (2019-12-15)
+<a href=https://listenbody.site/posts/static-katex-with-hugo/>Server-side KaTeX With Hugo</a> (2019-12-15)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/triangle-dft/>The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
+<a href=https://listenbody.site/posts/triangle-dft/>The Discrete Fourier Transform, But With Triangles</a> (2019-12-14)
 </li>
 <li style=list-style:none>
-<a href=https://graemephi.github.io/posts/dumb-tricks-with-phase-inversion/>Dumb Tricks With Phase Inversion</a> (2019-06-02)
+<a href=https://listenbody.site/posts/dumb-tricks-with-phase-inversion/>Dumb Tricks With Phase Inversion</a> (2019-06-02)
 </li>
 </ol>
 <div class=rss-link>
